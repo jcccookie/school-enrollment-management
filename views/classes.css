@@ -1,0 +1,30 @@
+
+#menuBar {
+	width: 100%;
+  	background-color: lightgrey;
+  	overflow: hidden;
+}
+
+#menuBar a {
+  	float: left;
+  	color: white;
+  	text-align: center;
+  	padding-top: 15px;
+  	padding-right: 15px;
+  	padding-left: 15px;
+  	padding-bottom: 20px;
+  	font-size: 16px;
+}
+
+h1 {
+	font-size: 36px;
+}
+
+#menuBar a:hover {
+  	background-color: darkgrey;
+  	color: black;
+}
+
+
+
+
