@@ -1,0 +1,22 @@
+
+h1 {
+	font-size: 36px;
+}
+
+.block {
+  display:block;
+  width: 200px;
+  height: 200px;
+  background-color: grey;
+  color: black;
+  padding: 20px;
+  font-size: 20px;
+  cursor: pointer;
+  text-align: center;
+}
+
+#classButton, #accountButton, #searchButton {
+  display: inline-block;
+}
+
+
