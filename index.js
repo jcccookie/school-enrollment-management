@@ -5,8 +5,7 @@ var handlebars = require('express-handlebars').create({defaultLayout:'main'});
 
 app.engine('handlebars', handlebars.engine);
 app.set('view engine', 'handlebars');
-app.set('port', 3000);
-var port = process.env.PORT || 3000;
+app.set('port', process.argv[2]);
 
 app.use(express.static('public'));
 
@@ -46,10 +45,7 @@ app.use(function(err, req, res, next){
   res.render('500');
 });
 
-// app.listen(app.get('port'), function(){
-//   console.log('Express started on http://localhost:' + app.get('port') + '; press Ctrl-C to terminate.');
-// });
+app.listen(app.get('port'), function(){
+  console.log('Express started on http://localhost:' + app.get('port') + '; press Ctrl-C to terminate.');
+});
 
-app.listen(port, function(){
-  console.log('app is running')
-})

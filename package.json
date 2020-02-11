@@ -14,9 +14,7 @@
     "express": "^4.13.2",
     "express-handlebars": "^2.0.1",
     "express-session": "^1.11.3",
-    "mysql": "^2.8.0",
-    "graceful-fs": {
-      "version": "4.2.2"
-    }
+    "forever": "^2.0.0",
+    "mysql": "^2.8.0"
   }
 }
