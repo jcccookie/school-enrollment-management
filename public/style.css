@@ -1,0 +1,12 @@
+html {
+   font-family: sans-serif;
+ }
+ body {
+   max-width: 1000px;
+   margin: auto;
+ }
+
+ table {
+  max-width: 900px;
+  /* margin: auto; */
+}
