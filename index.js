@@ -10,7 +10,7 @@ var port = process.env.PORT || 3000;
 
 app.use(express.static('public'));
 
-app.get('/index',function(req,res){
+app.get('/',function(req,res){
   res.render('index')
 });
 
