@@ -15,5 +15,5 @@
     "express-handlebars": "^2.0.1",
     "express-session": "^1.11.3",
     "mysql": "^2.8.0"
-  },
+  }
 }
