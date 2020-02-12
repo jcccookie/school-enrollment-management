@@ -1,13 +1,20 @@
 var express = require('express');
+const path = require('path');
 
 var app = express();
-var handlebars = require('express-handlebars').create({defaultLayout:'main'});
+var handlebars = require('express-handlebars');
 
-app.engine('handlebars', handlebars.engine);
+app.engine('handlebars', handlebars());
 app.set('view engine', 'handlebars');
-app.set('port', process.argv[2]);
 
-app.use(express.static('public'));
+const PORT = process.env.PORT || 3000;
+
+// Body Parser Middleware
+app.use(express.json());
+app.use(express.urlencoded({ extended: false }));
+
+//Static files
+app.use(express.static(path.join(__dirname, 'public')));
 
 app.get('/',function(req,res){
   res.render('index')
@@ -45,7 +52,7 @@ app.use(function(err, req, res, next){
   res.render('500');
 });
 
-app.listen(app.get('port'), function(){
-  console.log('Express started on http://localhost:' + app.get('port') + '; press Ctrl-C to terminate.');
+app.listen(PORT, function(){
+  console.log('Express started on http://localhost:' + PORT + '; press Ctrl-C to terminate.');
 });
 
