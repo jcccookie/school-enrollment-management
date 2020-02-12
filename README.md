@@ -1,5 +1,4 @@
-install npm
+Live: https://school-database-mngt.herokuapp.com/
 
-To run a live server,
-
-node index.js
+To run a local live server,
+npm start dev
