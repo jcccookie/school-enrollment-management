@@ -8,7 +8,7 @@ var handlebars = require('express-handlebars');
 app.engine('handlebars', handlebars());
 app.set('view engine', 'handlebars');
 
-const PORT = process.argv[2] || 3000;
+const PORT = process.env.PORT || 3000;
 
 // Body Parser Middleware
 app.use(express.json());
