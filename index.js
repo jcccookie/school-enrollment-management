@@ -40,6 +40,10 @@ app.get('/search',function(req,res){
   res.render('search');
 });
 
+app.get('/admin', function(req,res){
+  res.render('admin');
+});
+
 app.use(function(req,res){
   res.status(404);
   res.render('404');
