@@ -1,4 +1,5 @@
 var express = require('express');
+var mysql = require('./dbcon.js');
 const path = require('path');
 
 var app = express();
@@ -7,7 +8,7 @@ var handlebars = require('express-handlebars');
 app.engine('handlebars', handlebars());
 app.set('view engine', 'handlebars');
 
-const PORT = process.env.PORT || 3000;
+const PORT = process.argv[2] || 3000;
 
 // Body Parser Middleware
 app.use(express.json());
@@ -59,4 +60,3 @@ app.use(function(err, req, res, next){
 app.listen(PORT, function(){
   console.log('Express started on http://localhost:' + PORT + '; press Ctrl-C to terminate.');
 });
-
