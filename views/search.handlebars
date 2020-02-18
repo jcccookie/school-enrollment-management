@@ -11,9 +11,28 @@
 </div>
    
 <div class="searchMenu">
-   <input type="text" placeholder="Class Name">
-   <button> Search </button>
-   <button> Cancel </button>
+   <div class="searchMenu">
+        <div class="dropdown">
+          <label for="termSelect"> Term </label>
+          <select id="termSelect">
+            <option> Spring 2020 </option>
+            <option> Summer 2020 </option>
+            {{#each term_id}}
+            <option value="{{this}}"> {{term_name}} </option>
+            {{/each}}
+          </select>
+        </div>
+        <div class="dropdown">
+          <label for="subjectSelect"> Subject </label>
+          <select id="subjectSelect">
+            <option> Computer Science </option>
+            <option> Art </option>
+            {{#each subject_id}}
+            <option value="{{this}}"> {{subject_id}} </option>
+            {{/each}}
+          </select>
+        </div>
+      </div>
 </div>
 
 <table id="studenClasses">
