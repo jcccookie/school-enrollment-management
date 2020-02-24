@@ -21,8 +21,6 @@ SET time_zone = "+00:00";
 --
 -- Database: `cs340_kimkyeon`
 --
-CREATE DATABASE IF NOT EXISTS `cs340_kimkyeon` DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci;
-USE `cs340_kimkyeon`;
 
 -- --------------------------------------------------------
 
