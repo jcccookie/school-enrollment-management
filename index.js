@@ -1,4 +1,5 @@
 var express = require('express');
+var mysql = require('./dbcon.js');
 const path = require('path');
 
 var app = express();
@@ -59,4 +60,3 @@ app.use(function(err, req, res, next){
 app.listen(PORT, function(){
   console.log('Express started on http://localhost:' + PORT + '; press Ctrl-C to terminate.');
 });
-
