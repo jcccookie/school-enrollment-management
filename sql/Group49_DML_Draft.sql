@@ -21,7 +21,9 @@ WHERE (:inputStudentID = Account.student_id);
 
 
 -- Account Page --
-
+-- Query to show the students account information.
+SELECT CONCAT(Students.f_name, " ", Students.l_name), Account.student_id, Students.email_address, Students.mobile_number
+FROM Students, Account WHERE(inputStudentID: = Students.student_id); 
 
 -- Sign Up Page --
 
