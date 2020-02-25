@@ -8,11 +8,62 @@
 </div>
 
 <div id="title">
-   <h1>Admin</h1>
+   <h1>Admin Page</h1>
+</div>
+
+<div id="subtitle">
+   <h2>Add Data</h2>
+</div>
+
+<h3>Add Class</h3>
+<form id="classAddForm">
+   Subject: <select name="subject"> 
+         <option>Accounting</option>
+         <option>Art</option>
+         <option>Computer Science</option>
+    </select><br>
+   Term: <select name="term"> 
+      <option>Spring 2020</option>
+      <option>Summer 2020</option>
+      <option>Fall 2020</option>
+   </select><br>
+   Name: <input type="text" name="name"><br>
+   Total: <input type="text" name="total"><br>
+   Max: <input type="text" name="max"><br>
+   Credit: <input type="text" name="credit"><br>
+   <input type="submit" value="Add">
+</form>
+
+<h3>Add Student</h3>
+<form id="addStudentForm">
+   First Name: <input type="text" name="fname"><br>
+   Middle Name: <input type="text" name="mname"><br>
+   Last Name: <input type="text" name="lname"><br>
+   Email: <input type="text" name="email"><br>
+   Phone Number: <input type="text" name="phone"><br>
+   <input type="submit" value="Add">
+</form>
+
+<h3>Add Subject</h3>
+<form id="addSubjectForm">
+   Subject Name: <input type="text" name="subjectName"><br>
+   <input type="submit" value="Add">
+</form>
+
+<h3>Add Term</h3>
+<form id="addTermForm">
+   Term Name: <input type="text" name="termName"><br>
+   Year: <input type="text" name="termYear"><br>
+   Max Credit: <input type="text" name="termMax"><br>
+   <input type="submit" value="Add">
+</form>
+
+<div id="subtitle">
+   <h2>DB Tables</h2>
 </div>
 
 <div id="head">
-   <h2> Class List </h2>
+   <h3> Class List </h3>
 </div>
    
 <table id="studenClasses">
@@ -21,8 +72,8 @@
       <th> Subject </th>
       <th> Term </th>
       <th> Name </th>
-      <th> Total Student </th>
-      <th> Max Student </th>
+      <th> Total </th>
+      <th> Max </th>
       <th> Credit </th>
    </tr>
    <tr>
@@ -33,9 +84,6 @@
       <td> 200 </td>
       <td> 250 </td>
       <td> 4 </td>
-      <td>
-         <button> Add </button>
-      </td>
       <td>
          <button> Delete </button>
       </td>
@@ -49,9 +97,6 @@
       <td> 250 </td>
       <td> 4 </td>
       <td>
-         <button> Add </button>
-      </td>
-      <td>
          <button> Delete </button>
       </td>
    </tr>
@@ -64,16 +109,13 @@
       <td> 200 </td>
       <td> 4 </td>
       <td>
-         <button> Add </button>
-      </td>
-      <td>
          <button> Delete </button>
       </td>
    </tr>
 </table> 
 
 <div id="head">
-   <h2> Student List </h2>
+   <h3> Student List </h3>
 </div>
    
 <table id="studenClasses">
@@ -93,9 +135,6 @@
       <td> kim@oregonstate.edu </td>
       <td> 123-424-2321 </td>
       <td>
-         <button> Add </button>
-      </td>
-      <td>
          <button> Delete </button>
       </td>
    </tr>
@@ -106,9 +145,6 @@
       <td> Lee </td>
       <td> lee@oregonstate.edu </td>
       <td> 123-424-2321 </td>
-      <td>
-         <button> Add </button>
-      </td>
       <td>
          <button> Delete </button>
       </td>
@@ -121,16 +157,13 @@
       <td> nor@oregonstate.edu </td>
       <td> 123-424-2321 </td>
       <td>
-         <button> Add </button>
-      </td>
-      <td>
          <button> Delete </button>
       </td>
    </tr>
 </table>   
 
 <div id="head">
-   <h2> Account List </h2>
+   <h3> Account List </h3>
 </div>
 
 <table id="studenClasses">
@@ -161,7 +194,7 @@
 </table>   
 
 <div id="head">
-   <h2> Subject List </h2>
+   <h3> Subject List </h3>
 </div>
    
 <table id="studenClasses">
@@ -173,18 +206,12 @@
       <td> 1 </td>
       <td> Accounting </td>
       <td>
-         <button> Add </button>
-      </td>
-      <td>
          <button> Delete </button>
       </td>
    </tr>
    <tr>
       <td> 2 </td>
       <td> Art </td>
-      <td>
-         <button> Add </button>
-      </td>
       <td>
          <button> Delete </button>
       </td>
@@ -193,16 +220,13 @@
       <td> 3 </td>
       <td> Computer Science </td>
       <td>
-         <button> Add </button>
-      </td>
-      <td>
          <button> Delete </button>
       </td>
    </tr>
 </table>
 
 <div id="head">
-   <h2> Term List </h2>
+   <h3> Term List </h3>
 </div>
    
 <table id="studenClasses">
@@ -218,9 +242,6 @@
       <td> 2020 </td>
       <td> 16 </td>
       <td>
-         <button> Add </button>
-      </td>
-      <td>
          <button> Delete </button>
       </td>
    </tr>
@@ -230,9 +251,6 @@
       <td> 2020 </td>
       <td> 16 </td>
       <td>
-         <button> Add </button>
-      </td>
-      <td>
          <button> Delete </button>
       </td>
    </tr>
@@ -241,9 +259,6 @@
       <td> Summer </td>
       <td> 2020 </td>
       <td> 16 </td>
-      <td>
-         <button> Add </button>
-      </td>
       <td>
          <button> Delete </button>
       </td>
