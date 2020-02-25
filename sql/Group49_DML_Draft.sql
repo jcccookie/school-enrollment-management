@@ -13,6 +13,7 @@
 
 
 -- Admin Page -- 
+
 -- View Tables
 -- Class List
 SELECT Classes.class_id Subjects.subject_name AS Subject CONCAT(Terms.term_name, " ", Terms.term_year) AS Term Classes.class_name AS Name Classes.class_student_total AS Enrolled Classes.class_student_max AS Capacity Classes.class_credit AS Credit FROM Classes
@@ -36,5 +37,18 @@ SELECT term_id term_name term_year term_max_credit FROM Terms
 
 
 --Add Data to Tables
---Add Classes
-SELECT subject_id subject_name FROM Subjects
+--Add Class
+SELECT subject_id subject_name FROM Subjects -- Dropbar
+SELECT term_id term_name term_year FROM Terms -- Dropbar
+INSERT INTO Classes (subject_id, term_id, class_name, class_student_total, class_student_max, class_credit) VALUES (:inputSubjectId, :inputTermId, :inputClassName, :inputClassTotal, :inputClassMax, :inputClassCredit)
+
+--Add Student
+INSERT INTO Students (f_name, m_name, l_name, email_address, mobile_number) VALUES (:inputFname, :inputMname, :inputLname, :inputEmail, :inputMobile)
+
+--Add Subject
+INSERT INTO Subjects (subject_name) VALUES (:inputSubjectName)
+
+--Add Term
+INSERT INTO Terms (term_name, term_year, term_max_credit) VALUES (:inputName, :inputYear, :inputMax)
+
+
