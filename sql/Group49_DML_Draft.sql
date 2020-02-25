@@ -1,9 +1,23 @@
 -- Data Manipulation Language
 
 -- Class Schedule Page --
+-- Query for getting information about the students classes.
+SELECT Terms.term_name, Terms.term_year, Classes.class_name, Subjects.subject_name, Classes.class_credit 
+FROM Terms, Classes, Subjects, Account WHERE(:inputStudentID = Account.student_id);
 
+-- Removing the connection between the students account and a class.
+DELETE FROM Account_Details WHERE(:inputStudentID = student_id AND Classes.class_id = class_id);
 
 -- Search Page --
+
+-- Query for getting possible classes to add to a students account.
+SELECT Terms.term_name, Terms.term_year, Classes.class_name, Subjects.subject_name, Classes.class_student_total, Classes.class_student_max
+FROM Terms, Classes, Subjects WHERE (:inputTermName = Terms.term_name AND :inputTermYear = Terms.term_year AND :inputSubjectName = Subjects.subject_name);
+
+-- Add a connection between a student account and a class.
+INSERT INTO Account_Details (Account.account_id, Classes.class_id) FROM Account, Classes 
+WHERE (:inputStudentID = Account.student_id);
+
 
 
 -- Account Page --
