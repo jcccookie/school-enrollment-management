@@ -15,7 +15,7 @@ SELECT Terms.term_name, Terms.term_year, Classes.class_name, Subjects.subject_na
 FROM Terms, Classes, Subjects WHERE (:inputTermName = Terms.term_name AND :inputTermYear = Terms.term_year AND :inputSubjectName = Subjects.subject_name);
 
 -- Add a connection between a student account and a class.
-INSERT INTO Account_Details (Account.account_id, Classes.class_id) FROM Account, Classes 
+INSERT INTO Account_Details VALUES (Account.account_id, Classes.class_id) FROM Account, Classes 
 WHERE (:inputStudentID = Account.student_id);
 
 
