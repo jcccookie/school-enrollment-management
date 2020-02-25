@@ -22,8 +22,12 @@ WHERE (:inputStudentID = Account.student_id);
 
 -- Account Page --
 
+-- Edit Page --
+UPDATE Students SET email_address = :inputEmail, mobile_number = :inputMobile WHERE student_id = :studentIdFromEditForm
+
 
 -- Sign Up Page --
+INSERT Accounts INTO (student_id) VALUES (SELECT student_id FROM Students WHERE (student_id = :inputID AND email_address = :inputEmail))
 
 
 -- Admin Page -- 
