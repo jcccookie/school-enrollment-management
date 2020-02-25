@@ -21,10 +21,12 @@ WHERE (:inputStudentID = Account.student_id);
 
 
 -- Account Page --
+-- Query to show the students account information.
+SELECT CONCAT(Students.f_name, " ", Students.l_name), Account.student_id, Students.email_address, Students.mobile_number
+FROM Students, Account WHERE(inputStudentID: = Students.student_id); 
 
 -- Edit Page --
 UPDATE Students SET email_address = :inputEmail, mobile_number = :inputMobile WHERE student_id = :studentIdFromEditForm
-
 
 -- Sign Up Page --
 INSERT Accounts INTO (student_id) VALUES (SELECT student_id FROM Students WHERE (student_id = :inputID AND email_address = :inputEmail))
