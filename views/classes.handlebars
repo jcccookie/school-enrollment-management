@@ -13,49 +13,29 @@
 <form>
     <label for="classSearch"> Search by your Student ID</label>
     <input id="classSearch" type="text" value="">
-    <input type="button" value="Search" onclick="">
+    <input type="button" value="Search" onclick="getClasses()">
 </form>
 
 <table id="studenClasses">
-   <tr>
+   <thead>
       <th> Term </th>
       <th> Class </th>
       <th> Subject </th>
       <th> Credit </th>
       <th> Fees </th>
       <th> Paid </th>
-   </tr>
-   <tr>
-      <td> Spring 2020 </td>
-      <td> cs325 </td>
-      <td> Algorithm </td>
-      <td> 4 </td>
-      <td> $2,000 </td>
-      <td> Yes </td>
-      <td>
-         <button> Drop </button>
-      </td>
-   </tr>
-   <tr>
-      <td> Spring 2020 </td>
-      <td> cs340 </td>
-      <td> Databases </td>
-      <td> 4 </td>
-      <td> $2,000 </td>
-      <td> No </td>
-      <td>
-         <button> Drop </button>
-      </td>
-   </tr>
-   <tr>
-      <td> Spring 2020 </td>
-      <td> cs361 </td>
-      <td> Software Engineering 1 </td>
-      <td> 3 </td>
-      <td> $1,500 </td>
-      <td> No </td>
-      <td>
-         <button> Drop </button>
-      </td>
-   </tr>
+   </thead>
+   <tboad>
+      {{#each class}}
+      <tr>   
+         <td> {{term_name}} </td>
+         <td> {{term_year}} </td>
+         <td> {{class_name}} </td>
+         <td> {{subject_name}} </td>
+         <td> {{class_credit}} </td>
+         <td>
+            <button> Drop </button>
+         </td>
+      </tr>
+   </tbody>
 </table>   
