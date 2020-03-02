@@ -13,6 +13,8 @@ const PORT = process.env.PORT || 3000;
 // Body Parser Middleware
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
+// Set mysql
+app.set('mysql', mysql);
 
 //Static files
 app.use(express.static(path.join(__dirname, 'public')));
@@ -41,9 +43,7 @@ app.get('/search',function(req,res){
   res.render('search');
 });
 
-app.get('/admin', function(req,res){
-  res.render('admin');
-});
+app.use('/admin', require('./admin.js'));
 
 app.use(function(req,res){
   res.status(404);
