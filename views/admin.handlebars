@@ -22,10 +22,10 @@
       <option value={{id}}>{{name}}</option>
       {{/each}}
     </select><br>
-   Term: <select name="term"> 
-      <option>Spring 2020</option>
-      <option>Summer 2020</option>
-      <option>Fall 2020</option>
+   Term: <select name="term">
+      {{#each terms}}
+      <option value={{id}}>{{name}} {{year}}</option>
+      {{/each}}
    </select><br>
    Name: <input type="text" name="name"><br>
    Total: <input type="text" name="total"><br>
