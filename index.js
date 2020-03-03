@@ -31,9 +31,7 @@ app.get('/account',function(req,res){
   res.render('account');
 });
 
-app.get('/classes',function(req,res){
-  res.render('classes');
-});
+app.use('/classes', require('./classes.js'));
 
 app.get('/edit',function(req,res){
   res.render('edit');

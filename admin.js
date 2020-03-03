@@ -57,23 +57,22 @@ module.exports = function(){
      });
    }
 
-
    router.get('/', function(req, res) {
       var callbackCount = 0;
-        var context = {};
-        context.jsscripts = [];
-        var mysql = req.app.get('mysql');
-        getSubject(res, mysql, context, complete);
-        getTerm(res, mysql, context, complete);
-        getClasses(res, mysql, context, complete);
-        getStudents(res, mysql, context, complete);
-        getAccounts(res, mysql, context, complete);
-        function complete(){
-            callbackCount++;
-            if(callbackCount >= 5){
-                res.render('admin', context);
-            }
-        }
+      var context = {};
+      context.jsscripts = [];
+      var mysql = req.app.get('mysql');
+      getSubject(res, mysql, context, complete);
+      getTerm(res, mysql, context, complete);
+      getClasses(res, mysql, context, complete);
+      getStudents(res, mysql, context, complete);
+      getAccounts(res, mysql, context, complete);
+      function complete(){
+         callbackCount++;
+         if(callbackCount >= 5){
+               res.render('admin', context);
+         }
+      }
    })
 
    return router

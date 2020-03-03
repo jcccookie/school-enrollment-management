@@ -26,16 +26,16 @@
       <th> Paid </th>
    </thead>
    <tboad>
-      {{#each class}}
-      <tr>   
-         <td> {{term_name}} </td>
-         <td> {{term_year}} </td>
-         <td> {{class_name}} </td>
-         <td> {{subject_name}} </td>
-         <td> {{class_credit}} </td>
-         <td>
-            <button> Drop </button>
-         </td>
+      {{#each classes}}
+      <tr>
+         <td> {{id}} </td>
+         <td> {{sname}} </td>
+         <td> {{tname}} {{tyear}}</td>
+         <td> {{cname}} </td>
+         <td> {{enroll}} </td>
+         <td> {{max}} </td>
+         <td> {{credit}} </td>
       </tr>
+      {{/each}}
    </tbody>
 </table>   

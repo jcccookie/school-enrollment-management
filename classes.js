@@ -8,39 +8,22 @@ module.exports = function(){
 
 
 	function getClasses(res, mysql, context, complete){
-		mysql.pool.query("SELECT Terms.term_name, Terms.term_year, Classes.class_name, Subjects.subject_name, Classes.class_credit FROM Terms INNER JOIN Classes ON Terms.term_id = Classes.term_id INNER JOIN Subjects on Classes.subject_id = Subjects.subject_id;WHERE(:inputStudentID = Account.student_id)", function(error, results, fields){
-
-		if(error){
-			res.write(JSON.stringify(error));
-			res.end();
-		}	
-		context.class = results
-
-		complete();
-
-		});
+		mysql.pool.query("SELECT Classes.class_id AS id, (SELECT subject_name FROM Subjects WHERE subject_id = Classes.subject_id) AS sname, (SELECT term_year FROM Terms WHERE term_id = Classes.term_id) AS tyear, (SELECT term_name FROM Terms WHERE term_id = Classes.term_id) AS tname, Classes.class_name AS cname, (SELECT COUNT(class_id) FROM Account_Details WHERE class_id = Classes.class_id) AS enroll, Classes.class_student_max AS max, Classes.class_credit AS credit FROM Classes", function(error, results, fields){
+			if(error){
+				res.write(JSON.stringify(error));
+				res.end();
+			}
+			context.classes = results;
+			complete();
+	});
 	}
 
-	// router.get('/', function(req, res){
-    //     var callbackCount = 0;
-    //     var context = {};
-    //     context.jsscripts = ["searchByID.js"];
-    //     var mysql = req.app.get('mysql');
-    //     getClasses(res, mysql, context, complete);
-    //     function complete(){
-    //         callbackCount++;
-    //         if(callbackCount >= 1){
-    //             res.render('classes', context);
-    //         }
-    //     }
-    // });
-
-	router.get('/search/:id', function(req, res){
+	router.get('/', function(req, res){
         var callbackCount = 0;
         var context = {};
         context.jsscripts = ["searchByID.js"];
         var mysql = req.app.get('mysql');
-		getClasses(res, mysql, context, complete);
+        getClasses(res, mysql, context, complete);
         function complete(){
             callbackCount++;
             if(callbackCount >= 1){
@@ -48,6 +31,20 @@ module.exports = function(){
             }
         }
     });
+
+	// router.get('/search/:id', function(req, res){
+   //      var callbackCount = 0;
+   //      var context = {};
+   //      context.jsscripts = ["searchByID.js"];
+   //      var mysql = req.app.get('mysql');
+	// 	getClasses(res, mysql, context, complete);
+   //      function complete(){
+   //          callbackCount++;
+   //          if(callbackCount >= 1){
+   //              res.render('classes', context);
+   //          }
+   //      }
+   //  });
 
 	return router;
 
