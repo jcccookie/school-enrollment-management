@@ -35,6 +35,17 @@ module.exports = function(){
      });
    }
 
+   function getStudents(res, mysql, context, complete){
+      mysql.pool.query("SELECT student_id as id, f_name as fname, m_name as mname, l_name as lname, email_address as email, mobile_number as mobile FROM Students", function(error, results, fields){
+         if(error){
+             res.write(JSON.stringify(error));
+             res.end();
+         }
+         context.students = results;
+         complete();
+     });
+   }
+
    router.get('/', function(req, res) {
       var callbackCount = 0;
         var context = {};
@@ -43,9 +54,10 @@ module.exports = function(){
         getSubject(res, mysql, context, complete);
         getTerm(res, mysql, context, complete);
         getClasses(res, mysql, context, complete);
+        getStudents(res, mysql, context, complete);
         function complete(){
             callbackCount++;
-            if(callbackCount >= 3){
+            if(callbackCount >= 4){
                 res.render('admin', context);
             }
         }

@@ -53,8 +53,8 @@
 <h3>Add Term</h3>
 <form id="addTermForm">
    Term Name: <input type="text" name="termName"><br>
-   Year: <input type="text" name="termYear"><br>
-   Max Credit: <input type="text" name="termMax"><br>
+   Year: <input type="number" name="termYear"><br>
+   Max Credit: <input type="number" name="termMax"><br>
    <input type="submit" value="Add">
 </form>
 
@@ -94,47 +94,30 @@
    <h3> Student List </h3>
 </div>
 <table id="students">
-   <tr>
+   <thead>
       <th> Id </th>
       <th> First Name </th>
       <th> Middle Name </th>
       <th> Last Name </th>
       <th> Email </th>
       <th> Mobile </th>
-   </tr>
-   <tr>
-      <td> 1 </td>
-      <td> John </td>
-      <td> M. </td>
-      <td> Kim </td>
-      <td> kim@oregonstate.edu </td>
-      <td> 123-424-2321 </td>
-      <td>
-         <button> Delete </button>
-      </td>
-   </tr>
-   <tr>
-      <td> 2 </td>
-      <td> Victoria </td>
-      <td>  </td>
-      <td> Lee </td>
-      <td> lee@oregonstate.edu </td>
-      <td> 123-424-2321 </td>
-      <td>
-         <button> Delete </button>
-      </td>
-   </tr>
-   <tr>
-      <td> 3 </td>
-      <td> Serena </td>
-      <td> Caylah </td>
-      <td> Norwood </td>
-      <td> nor@oregonstate.edu </td>
-      <td> 123-424-2321 </td>
-      <td>
-         <button> Delete </button>
-      </td>
-   </tr>
+   </thead>
+   <tbody>
+      {{#each students}}
+      <tr>
+         <td> {{id}} </td>
+         <td> {{fname}} </td>
+         <td> {{mname}} </td>
+         <td> {{lname}} </td>
+         <td> {{email}} </td>
+         <td> {{mobile}} </td>
+         <td>
+            <button> Delete </button>
+         </td>
+      </tr>
+      {{/each}}
+   </tbody>
+   
 </table>   
 
 <div id="head">
