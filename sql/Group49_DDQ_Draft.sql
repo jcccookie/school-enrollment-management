@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: classmysql.engr.oregonstate.edu:3306
--- Generation Time: Feb 23, 2020 at 09:33 PM
+-- Generation Time: Mar 02, 2020 at 10:49 PM
 -- Server version: 10.4.11-MariaDB-log
 -- PHP Version: 7.0.33
 
@@ -28,6 +28,7 @@ SET time_zone = "+00:00";
 -- Table structure for table `Account`
 --
 
+DROP TABLE IF EXISTS `Account`;
 CREATE TABLE `Account` (
   `account_id` int(11) NOT NULL,
   `student_id` int(11) DEFAULT NULL,
@@ -42,7 +43,9 @@ CREATE TABLE `Account` (
 INSERT INTO `Account` (`account_id`, `student_id`, `account_amount_due`, `account_total_credit`) VALUES
 (1, 1, NULL, NULL),
 (2, 2, NULL, NULL),
-(3, 3, NULL, NULL);
+(3, 3, NULL, NULL),
+(4, 5, NULL, NULL),
+(5, 4, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -50,6 +53,7 @@ INSERT INTO `Account` (`account_id`, `student_id`, `account_amount_due`, `accoun
 -- Table structure for table `Account_Details`
 --
 
+DROP TABLE IF EXISTS `Account_Details`;
 CREATE TABLE `Account_Details` (
   `account_id` int(11) NOT NULL DEFAULT 0,
   `class_id` int(11) NOT NULL DEFAULT 0
@@ -62,7 +66,10 @@ CREATE TABLE `Account_Details` (
 INSERT INTO `Account_Details` (`account_id`, `class_id`) VALUES
 (1, 3),
 (2, 1),
-(3, 2);
+(3, 2),
+(4, 1),
+(5, 1),
+(5, 4);
 
 -- --------------------------------------------------------
 
@@ -70,6 +77,7 @@ INSERT INTO `Account_Details` (`account_id`, `class_id`) VALUES
 -- Table structure for table `Classes`
 --
 
+DROP TABLE IF EXISTS `Classes`;
 CREATE TABLE `Classes` (
   `class_id` int(11) NOT NULL,
   `subject_id` int(11) DEFAULT NULL,
@@ -87,7 +95,8 @@ CREATE TABLE `Classes` (
 INSERT INTO `Classes` (`class_id`, `subject_id`, `term_id`, `class_name`, `class_student_total`, `class_student_max`, `class_credit`) VALUES
 (1, 1, 1, 'Databases', 121, 250, 4),
 (2, 3, 2, 'Art History', 0, 250, 4),
-(3, 2, 3, 'Accounting 1', 0, 250, 4);
+(3, 2, 3, 'Accounting1', 0, 250, 4),
+(4, 1, 1, 'Algorithms', 0, 250, 4);
 
 -- --------------------------------------------------------
 
@@ -95,6 +104,7 @@ INSERT INTO `Classes` (`class_id`, `subject_id`, `term_id`, `class_name`, `class
 -- Table structure for table `Students`
 --
 
+DROP TABLE IF EXISTS `Students`;
 CREATE TABLE `Students` (
   `student_id` int(11) NOT NULL,
   `email_address` varchar(255) NOT NULL,
@@ -111,7 +121,9 @@ CREATE TABLE `Students` (
 INSERT INTO `Students` (`student_id`, `email_address`, `f_name`, `m_name`, `l_name`, `mobile_number`) VALUES
 (1, 'john@oregonstate.edu', 'John', 'M.', 'Lee', '213-234-1212'),
 (2, 'jane@oregonstate.edu', 'Jane', NULL, 'Soo', '123-323-1212'),
-(3, 'seren@oregonstate.edu', 'Serena', NULL, 'Cha', '212-232-1252');
+(3, 'seren@oregonstate.edu', 'Serena', NULL, 'Cha', '212-232-1252'),
+(4, 'cayla@oregonstate.edu', 'Caylah', NULL, 'Norwood', '123-000-0000'),
+(5, 'kyu@oregonstate.edu', 'Chankyu', NULL, 'Park', '111-222-3333');
 
 -- --------------------------------------------------------
 
@@ -119,6 +131,7 @@ INSERT INTO `Students` (`student_id`, `email_address`, `f_name`, `m_name`, `l_na
 -- Table structure for table `Subjects`
 --
 
+DROP TABLE IF EXISTS `Subjects`;
 CREATE TABLE `Subjects` (
   `subject_id` int(11) NOT NULL,
   `subject_name` varchar(255) NOT NULL
@@ -131,7 +144,8 @@ CREATE TABLE `Subjects` (
 INSERT INTO `Subjects` (`subject_id`, `subject_name`) VALUES
 (1, 'Computer Science'),
 (2, 'Accounting'),
-(3, 'Art');
+(3, 'Art'),
+(4, 'Mathematics');
 
 -- --------------------------------------------------------
 
@@ -139,9 +153,10 @@ INSERT INTO `Subjects` (`subject_id`, `subject_name`) VALUES
 -- Table structure for table `Terms`
 --
 
+DROP TABLE IF EXISTS `Terms`;
 CREATE TABLE `Terms` (
   `term_id` int(11) NOT NULL,
-  `term_year` year(4) NOT NULL,
+  `term_year` int(11) NOT NULL,
   `term_name` varchar(255) NOT NULL,
   `term_max_credit` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -152,7 +167,7 @@ CREATE TABLE `Terms` (
 
 INSERT INTO `Terms` (`term_id`, `term_year`, `term_name`, `term_max_credit`) VALUES
 (1, 2020, 'Spring', 16),
-(2, 2020, 'Summer', 12),
+(2, 2020, 'Summer', 16),
 (3, 2020, 'Fall', 16);
 
 --
@@ -207,25 +222,25 @@ ALTER TABLE `Terms`
 -- AUTO_INCREMENT for table `Account`
 --
 ALTER TABLE `Account`
-  MODIFY `account_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `account_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `Classes`
 --
 ALTER TABLE `Classes`
-  MODIFY `class_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `class_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `Students`
 --
 ALTER TABLE `Students`
-  MODIFY `student_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `student_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `Subjects`
 --
 ALTER TABLE `Subjects`
-  MODIFY `subject_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `subject_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `Terms`
