@@ -65,9 +65,8 @@
 <div id="head">
    <h3> Class List </h3>
 </div>
-   
 <table id="classes">
-   <tr>
+   <thead>
       <th> Id </th>
       <th> Subject </th>
       <th> Term </th>
@@ -75,49 +74,28 @@
       <th> Enrolled </th>
       <th> Cap </th>
       <th> Credit </th>
-   </tr>
-   <tr>
-      <td> 1 </td>
-      <td> Computer Science </td>
-      <td> Spring 2020 </td>
-      <td> Algorithms </td>
-      <td> 200 </td>
-      <td> 250 </td>
-      <td> 4 </td>
-      <td>
-         <button> Delete </button>
-      </td>
-   </tr>
-   <tr>
-      <td> 2 </td>
-      <td> Computer Science </td>
-      <td> Spring 2020 </td>
-      <td> Operating System </td>
-      <td> 124 </td>
-      <td> 250 </td>
-      <td> 4 </td>
-      <td>
-         <button> Delete </button>
-      </td>
-   </tr>
-   <tr>
-      <td> 3 </td>
-      <td> Computer Science </td>
-      <td> Spring 2020 </td>
-      <td> Databases </td>
-      <td> 121 </td>
-      <td> 200 </td>
-      <td> 4 </td>
-      <td>
-         <button> Delete </button>
-      </td>
-   </tr>
+   </thead>
+   <tbody>
+      {{#each classes}}
+      <tr>
+         <td> {{id}} </td>
+         <td> {{sname}} </td>
+         <td> {{tname}} {{tyear}}</td>
+         <td> {{cname}} </td>
+         <td> 0 </td>
+         <td> {{max}} </td>
+         <td> {{credit}} </td>
+         <td>
+            <button> Delete </button>
+         </td>
+      </tr>
+      {{/each}}
+   </tbody>
 </table> 
 
 <div id="head">
    <h3> Student List </h3>
 </div>
-   
 <table id="students">
    <tr>
       <th> Id </th>
@@ -165,7 +143,6 @@
 <div id="head">
    <h3> Account List </h3>
 </div>
-
 <table id="accounts">
    <tr>
       <th> Id </th>
@@ -200,7 +177,6 @@
 <div id="head">
    <h3> Subject List </h3>
 </div>
-   
 <table id="subjects">
    <tr>
       <th> Id </th>
@@ -232,7 +208,6 @@
 <div id="head">
    <h3> Term List </h3>
 </div>
-   
 <table id="terms">
    <tr>
       <th> Id </th>
