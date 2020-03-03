@@ -31,7 +31,7 @@ app.get('/account',function(req,res){
   res.render('account');
 });
 
-app.use('/classes', require('./public/classes.js'));
+app.use('/classes', require('./classes.js'));
 
 app.get('/edit',function(req,res){
   res.render('edit');
@@ -41,7 +41,7 @@ app.get('/search',function(req,res){
   res.render('search');
 });
 
-app.use('/admin', require('./public/admin.js'));
+app.use('/admin', require('./admin.js'));
 
 app.use(function(req,res){
   res.status(404);
