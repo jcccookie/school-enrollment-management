@@ -3,7 +3,7 @@ module.exports = function(){
    var router = express.Router();
 
    function getSubject(res, mysql, context, complete){
-      mysql.pool.query("SELECT subject_id as id, subject_name as name FROM Subjects", function(error, results, fields){
+      mysql.pool.query("SELECT subject_id AS id, subject_name AS name FROM Subjects", function(error, results, fields){
          if(error){
              res.write(JSON.stringify(error));
              res.end();
@@ -14,7 +14,7 @@ module.exports = function(){
    }
 
    function getTerm(res, mysql, context, complete){
-      mysql.pool.query("SELECT term_id as id, term_year as year, term_name as name FROM Terms", function(error, results, fields){
+      mysql.pool.query("SELECT term_id AS id, term_year AS year, term_name AS name, term_max_credit AS max FROM Terms", function(error, results, fields){
          if(error){
              res.write(JSON.stringify(error));
              res.end();
@@ -36,7 +36,7 @@ module.exports = function(){
    }
 
    function getStudents(res, mysql, context, complete){
-      mysql.pool.query("SELECT student_id as id, f_name as fname, m_name as mname, l_name as lname, email_address as email, mobile_number as mobile FROM Students", function(error, results, fields){
+      mysql.pool.query("SELECT student_id AS id, f_name AS fname, m_name AS mname, l_name AS lname, email_address AS email, mobile_number AS mobile FROM Students", function(error, results, fields){
          if(error){
              res.write(JSON.stringify(error));
              res.end();

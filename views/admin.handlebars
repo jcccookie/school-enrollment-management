@@ -117,7 +117,6 @@
       </tr>
       {{/each}}
    </tbody>
-   
 </table>   
 
 <div id="head">
@@ -158,68 +157,38 @@
    <h3> Subject List </h3>
 </div>
 <table id="subjects">
-   <tr>
+   <thead>
       <th> Id </th>
       <th> Subject Name </th>
-   </tr>
-   <tr>
-      <td> 1 </td>
-      <td> Accounting </td>
-      <td>
-         <button> Delete </button>
-      </td>
-   </tr>
-   <tr>
-      <td> 2 </td>
-      <td> Art </td>
-      <td>
-         <button> Delete </button>
-      </td>
-   </tr>
-   <tr>
-      <td> 3 </td>
-      <td> Computer Science </td>
-      <td>
-         <button> Delete </button>
-      </td>
-   </tr>
+   </thead>
+   <tbody>
+      {{#each subjects}}
+      <tr>
+         <td> {{id}} </td>
+         <td> {{name}} </td>
+      </tr>
+      {{/each}}
+   </tbody>
 </table>
 
 <div id="head">
    <h3> Term List </h3>
 </div>
 <table id="terms">
-   <tr>
+   <thead>
       <th> Id </th>
       <th> Name </th>
       <th> Year </th>
       <th> Max Credit </th>
-   </tr>
-   <tr>
-      <td> 1 </td>
-      <td> Spring </td>
-      <td> 2020 </td>
-      <td> 16 </td>
-      <td>
-         <button> Delete </button>
-      </td>
-   </tr>
-   <tr>
-      <td> 2 </td>
-      <td> Winter </td>
-      <td> 2020 </td>
-      <td> 16 </td>
-      <td>
-         <button> Delete </button>
-      </td>
-   </tr>
-   <tr>
-      <td> 3 </td>
-      <td> Summer </td>
-      <td> 2020 </td>
-      <td> 16 </td>
-      <td>
-         <button> Delete </button>
-      </td>
-   </tr>
+   </thead>
+   <tbody>
+      {{#each terms}}
+      <tr>
+         <td> {{id}} </td>
+         <td> {{name}} </td>
+         <td> {{year}} </td>
+         <td> {{max}} </td>
+      </tr>
+      {{/each}}
+   </tbody>
 </table>
