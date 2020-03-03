@@ -8,7 +8,6 @@ var handlebars = require('express-handlebars');
 app.engine('handlebars', handlebars());
 app.set('view engine', 'handlebars');
 
-// const PORT = process.env.PORT || 3000;
 app.set('port', process.argv[2]);
 
 // Body Parser Middleware
@@ -55,10 +54,6 @@ app.use(function(err, req, res, next){
   res.status(500);
   res.render('500');
 });
-
-// app.listen(PORT, function(){
-//   console.log('Express started on http://localhost:' + PORT + '; press Ctrl-C to terminate.');
-// });
 
 app.listen(app.get('port'), function(){
   console.log('Express started on http://localhost:' + app.get('port') + '; press Ctrl-C to terminate.');
