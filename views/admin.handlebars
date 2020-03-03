@@ -18,19 +18,19 @@
 <h3>Add Class</h3>
 <form id="classAddForm">
    Subject: <select name="subject"> 
-         <option>Accounting</option>
-         <option>Art</option>
-         <option>Computer Science</option>
+      {{#each subjects}}
+      <option value={{id}}>{{name}}</option>
+      {{/each}}
     </select><br>
-   Term: <select name="term"> 
-      <option>Spring 2020</option>
-      <option>Summer 2020</option>
-      <option>Fall 2020</option>
+   Term: <select name="term">
+      {{#each terms}}
+      <option value={{id}}>{{name}} {{year}}</option>
+      {{/each}}
    </select><br>
    Name: <input type="text" name="name"><br>
-   Total: <input type="text" name="total"><br>
-   Max: <input type="text" name="max"><br>
-   Credit: <input type="text" name="credit"><br>
+   Total: <input type="number" name="total"><br>
+   Max: <input type="number" name="max"><br>
+   Credit: <input type="number" name="credit"><br>
    <input type="submit" value="Add">
 </form>
 
@@ -53,8 +53,8 @@
 <h3>Add Term</h3>
 <form id="addTermForm">
    Term Name: <input type="text" name="termName"><br>
-   Year: <input type="text" name="termYear"><br>
-   Max Credit: <input type="text" name="termMax"><br>
+   Year: <input type="number" name="termYear"><br>
+   Max Credit: <input type="number" name="termMax"><br>
    <input type="submit" value="Add">
 </form>
 
@@ -65,9 +65,8 @@
 <div id="head">
    <h3> Class List </h3>
 </div>
-   
 <table id="classes">
-   <tr>
+   <thead>
       <th> Id </th>
       <th> Subject </th>
       <th> Term </th>
@@ -75,196 +74,111 @@
       <th> Enrolled </th>
       <th> Cap </th>
       <th> Credit </th>
-   </tr>
-   <tr>
-      <td> 1 </td>
-      <td> Computer Science </td>
-      <td> Spring 2020 </td>
-      <td> Algorithms </td>
-      <td> 200 </td>
-      <td> 250 </td>
-      <td> 4 </td>
-      <td>
-         <button> Delete </button>
-      </td>
-   </tr>
-   <tr>
-      <td> 2 </td>
-      <td> Computer Science </td>
-      <td> Spring 2020 </td>
-      <td> Operating System </td>
-      <td> 124 </td>
-      <td> 250 </td>
-      <td> 4 </td>
-      <td>
-         <button> Delete </button>
-      </td>
-   </tr>
-   <tr>
-      <td> 3 </td>
-      <td> Computer Science </td>
-      <td> Spring 2020 </td>
-      <td> Databases </td>
-      <td> 121 </td>
-      <td> 200 </td>
-      <td> 4 </td>
-      <td>
-         <button> Delete </button>
-      </td>
-   </tr>
+   </thead>
+   <tbody>
+      {{#each classes}}
+      <tr>
+         <td> {{id}} </td>
+         <td> {{sname}} </td>
+         <td> {{tname}} {{tyear}}</td>
+         <td> {{cname}} </td>
+         <td> {{enroll}} </td>
+         <td> {{max}} </td>
+         <td> {{credit}} </td>
+      </tr>
+      {{/each}}
+   </tbody>
 </table> 
 
 <div id="head">
    <h3> Student List </h3>
 </div>
-   
 <table id="students">
-   <tr>
+   <thead>
       <th> Id </th>
       <th> First Name </th>
       <th> Middle Name </th>
       <th> Last Name </th>
       <th> Email </th>
       <th> Mobile </th>
-   </tr>
-   <tr>
-      <td> 1 </td>
-      <td> John </td>
-      <td> M. </td>
-      <td> Kim </td>
-      <td> kim@oregonstate.edu </td>
-      <td> 123-424-2321 </td>
-      <td>
-         <button> Delete </button>
-      </td>
-   </tr>
-   <tr>
-      <td> 2 </td>
-      <td> Victoria </td>
-      <td>  </td>
-      <td> Lee </td>
-      <td> lee@oregonstate.edu </td>
-      <td> 123-424-2321 </td>
-      <td>
-         <button> Delete </button>
-      </td>
-   </tr>
-   <tr>
-      <td> 3 </td>
-      <td> Serena </td>
-      <td> Caylah </td>
-      <td> Norwood </td>
-      <td> nor@oregonstate.edu </td>
-      <td> 123-424-2321 </td>
-      <td>
-         <button> Delete </button>
-      </td>
-   </tr>
+   </thead>
+   <tbody>
+      {{#each students}}
+      <tr>
+         <td> {{id}} </td>
+         <td> {{fname}} </td>
+         <td> {{mname}} </td>
+         <td> {{lname}} </td>
+         <td> {{email}} </td>
+         <td> {{mobile}} </td>
+         <td>
+            <button> Delete </button>
+         </td>
+      </tr>
+      {{/each}}
+   </tbody>
 </table>   
 
 <div id="head">
    <h3> Account List </h3>
 </div>
-
 <table id="accounts">
-   <tr>
+   <thead>
       <th> Id </th>
       <th> Student Id </th>
       <th> Last Name </th>
       <th> Amount Due </th>
       <th> Total Credit </th>
-   </tr>
-   <tr>
-      <td> 1 </td>
-      <td> 1 </td>
-      <td> Kim </td>
-      <td> 2000 </td>
-      <td> 4 </td>
-   </tr>
-   <tr>
-      <td> 2 </td>
-      <td> 2 </td>
-      <td> Lee </td>
-      <td> 4000 </td>
-      <td> 8 </td>
-   </tr>
-   <tr>
-      <td> 3 </td>
-      <td> 3 </td>
-      <td> Craig </td>
-      <td> 2000 </td>
-      <td> 4 </td>
-   </tr>
+   </thead>
+   <tbody>
+      {{#each accounts}}
+      <tr>
+         <td> {{id}} </td>
+         <td> {{sid}} </td>
+         <td> {{lname}} </td>
+         <td> {{amount}} </td>
+         <td> {{credit}} </td>
+      </tr>
+      {{/each}}
+   </tbody>
 </table>   
 
 <div id="head">
    <h3> Subject List </h3>
 </div>
-   
 <table id="subjects">
-   <tr>
+   <thead>
       <th> Id </th>
       <th> Subject Name </th>
-   </tr>
-   <tr>
-      <td> 1 </td>
-      <td> Accounting </td>
-      <td>
-         <button> Delete </button>
-      </td>
-   </tr>
-   <tr>
-      <td> 2 </td>
-      <td> Art </td>
-      <td>
-         <button> Delete </button>
-      </td>
-   </tr>
-   <tr>
-      <td> 3 </td>
-      <td> Computer Science </td>
-      <td>
-         <button> Delete </button>
-      </td>
-   </tr>
+   </thead>
+   <tbody>
+      {{#each subjects}}
+      <tr>
+         <td> {{id}} </td>
+         <td> {{name}} </td>
+      </tr>
+      {{/each}}
+   </tbody>
 </table>
 
 <div id="head">
    <h3> Term List </h3>
 </div>
-   
 <table id="terms">
-   <tr>
+   <thead>
       <th> Id </th>
       <th> Name </th>
       <th> Year </th>
       <th> Max Credit </th>
-   </tr>
-   <tr>
-      <td> 1 </td>
-      <td> Spring </td>
-      <td> 2020 </td>
-      <td> 16 </td>
-      <td>
-         <button> Delete </button>
-      </td>
-   </tr>
-   <tr>
-      <td> 2 </td>
-      <td> Winter </td>
-      <td> 2020 </td>
-      <td> 16 </td>
-      <td>
-         <button> Delete </button>
-      </td>
-   </tr>
-   <tr>
-      <td> 3 </td>
-      <td> Summer </td>
-      <td> 2020 </td>
-      <td> 16 </td>
-      <td>
-         <button> Delete </button>
-      </td>
-   </tr>
+   </thead>
+   <tbody>
+      {{#each terms}}
+      <tr>
+         <td> {{id}} </td>
+         <td> {{name}} </td>
+         <td> {{year}} </td>
+         <td> {{max}} </td>
+      </tr>
+      {{/each}}
+   </tbody>
 </table>
