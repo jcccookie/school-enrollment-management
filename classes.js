@@ -21,23 +21,34 @@ module.exports = function(){
 		});
 	}
 
-	return router;
+	// router.get('/', function(req, res){
+    //     var callbackCount = 0;
+    //     var context = {};
+    //     context.jsscripts = ["searchByID.js"];
+    //     var mysql = req.app.get('mysql');
+    //     getClasses(res, mysql, context, complete);
+    //     function complete(){
+    //         callbackCount++;
+    //         if(callbackCount >= 1){
+    //             res.render('classes', context);
+    //         }
+    //     }
+    // });
 
-	router.get('/classes/:id', function(req, res){
+	router.get('/search/:id', function(req, res){
         var callbackCount = 0;
         var context = {};
-        context.jsscripts = ["getClasses.js"];
+        context.jsscripts = ["searchByID.js"];
         var mysql = req.app.get('mysql');
-        getClasses(res, mysql, context, complete);
+		getClasses(res, mysql, context, complete);
         function complete(){
             callbackCount++;
-            if(callbackCount >= 2){
+            if(callbackCount >= 1){
                 res.render('classes', context);
             }
         }
     });
 
-
-
+	return router;
 
 }();

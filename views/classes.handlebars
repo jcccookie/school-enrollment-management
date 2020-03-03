@@ -10,13 +10,13 @@
       <h1> Class Schedules </h1>
 </div>
 
-<form>
-    <label for="classSearch"> Search by your Student ID</label>
-    <input id="classSearch" type="text" value="">
+<form id="class_search" action="" method="">
+    <label> Search by your Student ID</label>
+    <input id="studentID" type="text" name="studentID" value="">
     <input type="button" value="Search" onclick="getClasses()">
 </form>
 
-<table id="studenClasses">
+<table id="studentClasses">
    <thead>
       <th> Term </th>
       <th> Class </th>
