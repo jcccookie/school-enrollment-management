@@ -46,6 +46,18 @@ module.exports = function(){
      });
    }
 
+   function getAccounts(res, mysql, context, complete){
+      mysql.pool.query("SELECT Account.account_id AS id, (SELECT student_id FROM Students WHERE student_id = Account.student_id) AS sid, (SELECT l_name FROM Students WHERE student_id = Account.student_id) AS lname, SUM(Classes.class_credit) AS credit, SUM(Classes.class_credit * 500) AS amount FROM Account INNER JOIN Account_Details ON Account_Details.account_id = Account.account_id INNER JOIN Classes ON Account_Details.class_id = Classes.class_id GROUP BY Account.account_id ORDER BY Account.account_id", function(error, results, fields){
+         if(error){
+             res.write(JSON.stringify(error));
+             res.end();
+         }
+         context.accounts = results;
+         complete();
+     });
+   }
+
+
    router.get('/', function(req, res) {
       var callbackCount = 0;
         var context = {};
@@ -55,9 +67,10 @@ module.exports = function(){
         getTerm(res, mysql, context, complete);
         getClasses(res, mysql, context, complete);
         getStudents(res, mysql, context, complete);
+        getAccounts(res, mysql, context, complete);
         function complete(){
             callbackCount++;
-            if(callbackCount >= 4){
+            if(callbackCount >= 5){
                 res.render('admin', context);
             }
         }
