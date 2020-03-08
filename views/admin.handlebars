@@ -44,11 +44,12 @@
 
 <h3>Add Account</h3>
 <form id="addAccount" action="/admin/account" method="post">
-   Students with no account: <select name="noaccount"> 
+   Students with no account: <select name="sid"> 
       {{#each noaccount}}
       <option value={{id}}>Student Id: {{id}} Name: {{fname}} {{lname}}</option>
       {{/each}}
     </select><br>
+    <input type="submit" value="Add">
 </form>
 
 <h3>Add Subject</h3>

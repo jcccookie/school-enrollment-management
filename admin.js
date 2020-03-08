@@ -47,7 +47,7 @@ module.exports = function(){
    }
 
    function getAccounts(res, mysql, context, complete){
-      mysql.pool.query("SELECT Account.account_id AS id, (SELECT student_id FROM Students WHERE student_id = Account.student_id) AS sid, (SELECT f_name FROM Students WHERE student_id = Account.student_id) AS fname, (SELECT l_name FROM Students WHERE student_id = Account.student_id) AS lname, SUM(Classes.class_credit) AS credit, SUM(Classes.class_credit * 500) AS amount FROM Account INNER JOIN Account_Details ON Account_Details.account_id = Account.account_id INNER JOIN Classes ON Account_Details.class_id = Classes.class_id GROUP BY Account.account_id ORDER BY Account.account_id", function(error, results, fields){
+      mysql.pool.query("SELECT Account.account_id AS id, (SELECT student_id FROM Students WHERE student_id = Account.student_id) AS sid, (SELECT f_name FROM Students WHERE student_id = Account.student_id) AS fname, (SELECT l_name FROM Students WHERE student_id = Account.student_id) AS lname, SUM(Classes.class_credit) AS credit, SUM(Classes.class_credit * 500) AS amount FROM Account LEFT JOIN Account_Details ON Account_Details.account_id = Account.account_id LEFT JOIN Classes ON Account_Details.class_id = Classes.class_id GROUP BY Account.account_id ORDER BY Account.account_id", function(error, results, fields){
          if(error){
              res.write(JSON.stringify(error));
              res.end();
@@ -165,9 +165,27 @@ module.exports = function(){
            res.end();
        }else{
            res.redirect('/admin');
-       }
+         }
+      });
    });
-});
+
+   router.post('/account', function(req, res){
+      console.log(req.body)
+      var mysql = req.app.get('mysql');
+      var sql = "INSERT INTO Account (student_id) VALUES (?)";
+      var inserts = [
+         req.body.sid,
+      ];
+      sql = mysql.pool.query(sql,inserts,function(error, results, fields){
+          if(error){
+              console.log(JSON.stringify(error))
+              res.write(JSON.stringify(error));
+              res.end();
+          }else{
+              res.redirect('/admin');
+            }
+         });
+      });
 
    return router
 }();
