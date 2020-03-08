@@ -23,10 +23,6 @@ app.get('/',function(req,res){
   res.render('index')
 });
 
-app.get('/signup',function(req,res){
-  res.render('signup');
-});
-
 app.get('/account',function(req,res){
   res.render('account');
 });
