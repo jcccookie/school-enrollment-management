@@ -16,7 +16,7 @@
 </div>
 
 <h3>Add Class</h3>
-<form id="addClass" action="/admin" method="post">
+<form id="addClass" action="/admin/class" method="post">
    Subject: <select name="subject"> 
       {{#each subjects}}
       <option value={{id}}>{{name}}</option>
@@ -34,7 +34,7 @@
 </form>
 
 <h3>Add Student</h3>
-<form id="addStudentForm">
+<form id="addStudent" action="/admin/student" method="post">
    First Name: <input type="text" name="fname"><br>
    Middle Name: <input type="text" name="mname"><br>
    Last Name: <input type="text" name="lname"><br>
@@ -44,16 +44,16 @@
 </form>
 
 <h3>Add Subject</h3>
-<form id="addSubjectForm">
-   Subject Name: <input type="text" name="subjectName"><br>
+<form id="addSubject" action="/admin/subject" method="post">
+   Subject Name: <input type="text" name="name"><br>
    <input type="submit" value="Add">
 </form>
 
 <h3>Add Term</h3>
-<form id="addTermForm">
-   Term Name: <input type="text" name="termName"><br>
-   Year: <input type="number" name="termYear"><br>
-   Max Credit: <input type="number" name="termMax"><br>
+<form id="addTerm" action="/admin/term" method="post">
+   Term Name: <input type="text" name="name"><br>
+   Year: <input type="number" name="year"><br>
+   Max Credit: <input type="number" name="max"><br>
    <input type="submit" value="Add">
 </form>
 

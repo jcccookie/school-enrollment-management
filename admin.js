@@ -75,13 +75,17 @@ module.exports = function(){
       }
    })
 
-   router.post('/', function(req, res){
-      console.log(req.body.subject)
-      console.log(req.body.term)
+   router.post('/class', function(req, res){
       console.log(req.body)
       var mysql = req.app.get('mysql');
       var sql = "INSERT INTO Classes (subject_id, term_id, class_name, class_student_max, class_credit) VALUES (?,?,?,?,?)";
-      var inserts = [req.body.subject, req.body.term, req.body.name, req.body.max, req.body.credit];
+      var inserts = [
+         req.body.subject, 
+         req.body.term, 
+         req.body.name, 
+         req.body.max, 
+         req.body.credit
+      ];
       sql = mysql.pool.query(sql,inserts,function(error, results, fields){
           if(error){
               console.log(JSON.stringify(error))
@@ -92,6 +96,66 @@ module.exports = function(){
           }
       });
   });
+
+  router.post('/student', function(req, res){
+   console.log(req.body)
+   var mysql = req.app.get('mysql');
+   var sql = "INSERT INTO Students (f_name, m_name, l_name, email_address, mobile_number) VALUES (?,?,?,?,?)";
+   var inserts = [
+      req.body.fname, 
+      req.body.mname === "" ? null : req.body.mname, 
+      req.body.lname, 
+      req.body.email, 
+      req.body.phone
+   ];
+   sql = mysql.pool.query(sql,inserts,function(error, results, fields){
+       if(error){
+           console.log(JSON.stringify(error))
+           res.write(JSON.stringify(error));
+           res.end();
+       }else{
+           res.redirect('/admin');
+         }
+      });
+   });
+
+   router.post('/subject', function(req, res){
+      console.log(req.body)
+      var mysql = req.app.get('mysql');
+      var sql = "INSERT INTO Subjects (subject_name) VALUES (?)";
+      var inserts = [
+         req.body.name
+      ];
+      sql = mysql.pool.query(sql,inserts,function(error, results, fields){
+          if(error){
+              console.log(JSON.stringify(error))
+              res.write(JSON.stringify(error));
+              res.end();
+          }else{
+              res.redirect('/admin');
+          }
+      });
+  });
+
+  router.post('/term', function(req, res){
+   console.log(req.body)
+   var mysql = req.app.get('mysql');
+   var sql = "INSERT INTO Terms (term_name, term_year, term_max_credit) VALUES (?,?,?)";
+   var inserts = [
+      req.body.name,
+      req.body.year,
+      req.body.max
+   ];
+   sql = mysql.pool.query(sql,inserts,function(error, results, fields){
+       if(error){
+           console.log(JSON.stringify(error))
+           res.write(JSON.stringify(error));
+           res.end();
+       }else{
+           res.redirect('/admin');
+       }
+   });
+});
 
    return router
 }();
