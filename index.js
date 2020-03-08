@@ -23,10 +23,6 @@ app.get('/',function(req,res){
   res.render('index')
 });
 
-app.get('/account',function(req,res){
-  res.render('account');
-});
-
 app.use('/classes', require('./classes.js'));
 
 app.get('/edit',function(req,res){
