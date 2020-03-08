@@ -42,6 +42,15 @@
    <input type="submit" value="Add">
 </form>
 
+<h3>Add Account</h3>
+<form id="addAccount" action="/admin/account" method="post">
+   Students with no account: <select name="noaccount"> 
+      {{#each noaccount}}
+      <option value={{id}}>Student Id: {{id}} Name: {{fname}} {{lname}}</option>
+      {{/each}}
+    </select><br>
+</form>
+
 <h3>Add Subject</h3>
 <form id="addSubject" action="/admin/subject" method="post">
    Subject Name: <input type="text" name="name"><br>
@@ -124,7 +133,7 @@
    <thead>
       <th> Id </th>
       <th> Student Id </th>
-      <th> Last Name </th>
+      <th> Name </th>
       <th> Amount Due </th>
       <th> Total Credit </th>
    </thead>
@@ -133,7 +142,7 @@
       <tr>
          <td> {{id}} </td>
          <td> {{sid}} </td>
-         <td> {{lname}} </td>
+         <td> {{fname}} {{lname}} </td>
          <td> {{amount}} </td>
          <td> {{credit}} </td>
       </tr>

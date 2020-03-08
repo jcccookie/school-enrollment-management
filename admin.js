@@ -47,12 +47,23 @@ module.exports = function(){
    }
 
    function getAccounts(res, mysql, context, complete){
-      mysql.pool.query("SELECT Account.account_id AS id, (SELECT student_id FROM Students WHERE student_id = Account.student_id) AS sid, (SELECT l_name FROM Students WHERE student_id = Account.student_id) AS lname, SUM(Classes.class_credit) AS credit, SUM(Classes.class_credit * 500) AS amount FROM Account INNER JOIN Account_Details ON Account_Details.account_id = Account.account_id INNER JOIN Classes ON Account_Details.class_id = Classes.class_id GROUP BY Account.account_id ORDER BY Account.account_id", function(error, results, fields){
+      mysql.pool.query("SELECT Account.account_id AS id, (SELECT student_id FROM Students WHERE student_id = Account.student_id) AS sid, (SELECT f_name FROM Students WHERE student_id = Account.student_id) AS fname, (SELECT l_name FROM Students WHERE student_id = Account.student_id) AS lname, SUM(Classes.class_credit) AS credit, SUM(Classes.class_credit * 500) AS amount FROM Account INNER JOIN Account_Details ON Account_Details.account_id = Account.account_id INNER JOIN Classes ON Account_Details.class_id = Classes.class_id GROUP BY Account.account_id ORDER BY Account.account_id", function(error, results, fields){
          if(error){
              res.write(JSON.stringify(error));
              res.end();
          }
          context.accounts = results;
+         complete();
+     });
+   }
+
+   function getStudentsWithNoAccount(res, mysql, context, complete){
+      mysql.pool.query("SELECT student_id AS id, f_name AS fname, l_name AS lname FROM Students WHERE student_id NOT IN (SELECT student_id FROM Account)", function(error, results, fields){
+         if(error){
+             res.write(JSON.stringify(error));
+             res.end();
+         }
+         context.noaccount = results;
          complete();
      });
    }
@@ -67,9 +78,10 @@ module.exports = function(){
       getClasses(res, mysql, context, complete);
       getStudents(res, mysql, context, complete);
       getAccounts(res, mysql, context, complete);
+      getStudentsWithNoAccount(res, mysql, context, complete);
       function complete(){
          callbackCount++;
-         if(callbackCount >= 5){
+         if(callbackCount >= 6){
                res.render('admin', context);
          }
       }
