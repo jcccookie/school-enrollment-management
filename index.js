@@ -29,9 +29,7 @@ app.get('/edit',function(req,res){
   res.render('edit');
 });
 
-app.get('/search',function(req,res){
-  res.render('search');
-});
+app.use('/search', require('./search.js'));
 
 app.use('/admin', require('./admin.js'));
 
