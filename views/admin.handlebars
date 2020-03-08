@@ -16,7 +16,7 @@
 </div>
 
 <h3>Add Class</h3>
-<form id="classAddForm">
+<form id="addClass" action="/admin" method="post">
    Subject: <select name="subject"> 
       {{#each subjects}}
       <option value={{id}}>{{name}}</option>
@@ -28,7 +28,6 @@
       {{/each}}
    </select><br>
    Name: <input type="text" name="name"><br>
-   Total: <input type="number" name="total"><br>
    Max: <input type="number" name="max"><br>
    Credit: <input type="number" name="credit"><br>
    <input type="submit" value="Add">

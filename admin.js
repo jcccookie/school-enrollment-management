@@ -75,5 +75,23 @@ module.exports = function(){
       }
    })
 
+   router.post('/', function(req, res){
+      console.log(req.body.subject)
+      console.log(req.body.term)
+      console.log(req.body)
+      var mysql = req.app.get('mysql');
+      var sql = "INSERT INTO Classes (subject_id, term_id, class_name, class_student_max, class_credit) VALUES (?,?,?,?,?)";
+      var inserts = [req.body.subject, req.body.term, req.body.name, req.body.max, req.body.credit];
+      sql = mysql.pool.query(sql,inserts,function(error, results, fields){
+          if(error){
+              console.log(JSON.stringify(error))
+              res.write(JSON.stringify(error));
+              res.end();
+          }else{
+              res.redirect('/admin');
+          }
+      });
+  });
+
    return router
 }();
