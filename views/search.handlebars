@@ -5,82 +5,37 @@
    <a href="admin">Admin</a>
 </div>  
 <div id="head">
-      <h1> Class Search </h1>
+      <h1> Search Classes </h1>
 </div>
    
-<div class="searchMenu">
-   <div class="searchMenu">
-        <div class="dropdown">
-          <label for="termSelect"> Search by Term </label>
-          <select id="termSelect">
-            <option> Spring 2020 </option>
-            <option> Summer 2020 </option>
-            {{#each term_id}}
-            <option value="{{this}}"> {{term_name}} </option>
-            {{/each}}
-          </select>
-        </div>
-        <div class="dropdown">
-          <label for="subjectSelect"> Search by Subject </label>
-          <select id="subjectSelect">
-            <option> Computer Science </option>
-            <option> Art </option>
-            {{#each subject_id}}
-            <option value="{{this}}"> {{subject_id}} </option>
-            {{/each}}
-          </select>
-        </div>
-      </div>
-</div>
+<form id="filterSubjectForm" action="" method="">
+   Search by Subject: <select id="filterSubject" name="subject">
+      {{#each subjects}}
+      <option value={{id}}>{{name}}</option>
+      {{/each}}
+    </select>
+   <input type="button" value="Search" onclick="filterClassesBySubject()">
+</form>
 
-<table id="studenClasses">
-   <tr>
-      <th> Term </th>
-      <th> Class </th>
+<table id="classes">
+   <thead>
       <th> Subject </th>
+      <th> Term </th>
+      <th> Name </th>
       <th> Enrolled </th>
-      <th> Max </th>
-   </tr>
-   <tr>
-      <td> Spring 2020 </td>
-      <td> cs362 </td>
-      <td> SE 2 </td>
-      <td> 250 </td>
-      <td> 250 </td>
-      <td>
-         <form>
-            <label for="email">Email: </label>
-            <input type="text" placeholder="Enter Email" name="email" id="email" required>
-            <input type="submit" value="Add">
-         </form>
-      </td>
-   </tr>
-   <tr>
-      <td> Spring 2020 </td>
-      <td> cs344 </td>
-      <td> OS </td>
-      <td> 68 </td>
-      <td> 250 </td>
-      <td>
-         <form>
-            <label for="email">Email: </label>
-            <input type="text" placeholder="Enter Email" name="email" id="email" required>
-            <input type="submit" value="Add">
-         </form>
-      </td>
-   </tr>
-   <tr>
-      <td> Spring 2020 </td>
-      <td> cs377 </td>
-      <td> Network </td>
-      <td> 140 </td>
-      <td> 300 </td>
-      <td>
-         <form>
-            <label for="email">Email: </label>
-            <input type="text" placeholder="Enter Email" name="email" id="email" required>
-            <input type="submit" value="Add">
-         </form>
-      </td>
-   </tr>
-</table>
+      <th> Cap </th>
+      <th> Credit </th>
+   </thead>
+   <tbody>
+      {{#each classes}}
+      <tr>
+         <td> {{sname}} </td>
+         <td> {{tname}} {{tyear}}</td>
+         <td> {{cname}} </td>
+         <td> {{enroll}} </td>
+         <td> {{max}} </td>
+         <td> {{credit}} </td>
+      </tr>
+      {{/each}}
+   </tbody>
+</table> 

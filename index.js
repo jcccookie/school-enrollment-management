@@ -17,7 +17,8 @@ app.use(express.urlencoded({ extended: false }));
 app.set('mysql', mysql);
 
 //Static files
-app.use(express.static(path.join(__dirname, 'public')));
+app.use('/static', express.static('public'));
+app.use('/', express.static('public'));
 
 app.get('/',function(req,res){
   res.render('index')
