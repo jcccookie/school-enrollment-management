@@ -74,7 +74,6 @@
 </div>
 <table id="classes">
    <thead>
-      <th> Id </th>
       <th> Subject </th>
       <th> Term </th>
       <th> Name </th>
@@ -85,7 +84,7 @@
    <tbody>
       {{#each classes}}
       <tr>
-         <td> {{id}} </td>
+         {{!-- <td> {{id}} </td> --}}
          <td> {{sname}} </td>
          <td> {{tname}} {{tyear}}</td>
          <td> {{cname}} </td>
@@ -119,7 +118,9 @@
          <td> {{email}} </td>
          <td> {{mobile}} </td>
          <td>
-            <button> Delete </button>
+            <button
+               onclick="deleteStudent({{id}})"
+            > Delete </button>
          </td>
       </tr>
       {{/each}}
@@ -155,14 +156,17 @@
 </div>
 <table id="subjects">
    <thead>
-      <th> Id </th>
       <th> Subject Name </th>
    </thead>
    <tbody>
       {{#each subjects}}
       <tr>
-         <td> {{id}} </td>
          <td> {{name}} </td>
+         <td>
+            <button
+               onclick="deleteSubject({{id}})"
+            > Delete </button>
+         </td>
       </tr>
       {{/each}}
    </tbody>
@@ -173,7 +177,6 @@
 </div>
 <table id="terms">
    <thead>
-      <th> Id </th>
       <th> Name </th>
       <th> Year </th>
       <th> Max Credit </th>
@@ -181,10 +184,14 @@
    <tbody>
       {{#each terms}}
       <tr>
-         <td> {{id}} </td>
          <td> {{name}} </td>
          <td> {{year}} </td>
          <td> {{max}} </td>
+         <td>
+            <button
+               onclick="deleteTerm({{id}})"
+            > Delete </button>
+         </td>
       </tr>
       {{/each}}
    </tbody>

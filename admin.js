@@ -71,7 +71,7 @@ module.exports = function(){
    router.get('/', function(req, res) {
       var callbackCount = 0;
       var context = {};
-      context.jsscripts = [];
+      context.jsscripts = ["deleteData.js"];
       var mysql = req.app.get('mysql');
       getSubject(res, mysql, context, complete);
       getTerm(res, mysql, context, complete);
@@ -163,7 +163,7 @@ module.exports = function(){
            console.log(JSON.stringify(error))
            res.write(JSON.stringify(error));
            res.end();
-       }else{
+       } else {
            res.redirect('/admin');
          }
       });
@@ -181,11 +181,59 @@ module.exports = function(){
               console.log(JSON.stringify(error))
               res.write(JSON.stringify(error));
               res.end();
-          }else{
+          } else {
               res.redirect('/admin');
-            }
-         });
+         }
       });
+   });
+
+   router.delete('/student/:id', function(req, res){
+      var mysql = req.app.get('mysql');
+      var sql = "DELETE FROM Students WHERE student_id = ?";
+      var inserts = [req.params.id];
+      sql = mysql.pool.query(sql, inserts, function(error, results, fields){
+          if(error){
+              console.log(error)
+              res.write(JSON.stringify(error));
+              res.status(400);
+              res.end();
+          }else{
+              res.status(202).end();
+          }
+      })
+  })
+
+  router.delete('/subject/:id', function(req, res){
+   var mysql = req.app.get('mysql');
+   var sql = "DELETE FROM Subjects WHERE subject_id = ?";
+   var inserts = [req.params.id];
+   sql = mysql.pool.query(sql, inserts, function(error, results, fields){
+       if(error){
+           console.log(error)
+           res.write(JSON.stringify(error));
+           res.status(400);
+           res.end();
+       }else{
+           res.status(202).end();
+         }
+      })
+   })
+
+router.delete('/term/:id', function(req, res){
+   var mysql = req.app.get('mysql');
+   var sql = "DELETE FROM Terms WHERE term_id = ?";
+   var inserts = [req.params.id];
+   sql = mysql.pool.query(sql, inserts, function(error, results, fields){
+       if(error){
+           console.log(error)
+           res.write(JSON.stringify(error));
+           res.status(400);
+           res.end();
+       }else{
+           res.status(202).end();
+      }
+   })
+})
 
    return router
 }();
