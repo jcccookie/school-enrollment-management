@@ -17,6 +17,15 @@
    <input type="button" value="Search" onclick="filterClassesBySubject()">
 </form>
 
+<form id="filterTermForm" action="" method="">
+   Search by Term: <select id="filterTerm" name="term">
+      {{#each terms}}
+      <option value={{id}}>{{name}} {{year}}</option>
+      {{/each}}
+    </select>
+   <input type="button" value="Search" onclick="filterClassesByTerm()">
+</form>
+
 <table id="classes">
    <thead>
       <th> Subject </th>
