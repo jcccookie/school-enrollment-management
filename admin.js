@@ -36,7 +36,7 @@ module.exports = function(){
    }
 
    function getSingleClass(res, mysql, context, id, complete){
-      var sql = "SELECT class_id as id,  FROM Classes WHERE class_id = ?";
+      var sql = "SELECT class_id AS id, subject_id AS sid, term_id AS tid, class_name AS name, class_student_max AS max, class_credit AS credit FROM Classes WHERE class_id = ?";
       var inserts = [id];
       mysql.pool.query(sql, inserts, function(error, results, fields){
           if(error){
