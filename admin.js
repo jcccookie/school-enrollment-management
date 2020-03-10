@@ -43,7 +43,7 @@ module.exports = function(){
               res.write(JSON.stringify(error));
               res.end();
           }
-          context.student = results[0];
+          context.class = results[0];
           complete();
       });
   }
@@ -168,12 +168,13 @@ module.exports = function(){
   router.post('/student', function(req, res){
    console.log(req.body)
    var mysql = req.app.get('mysql');
+   var email = `${req.body.fname.toLowerCase()}@oregonstate.edu`;
    var sql = "INSERT INTO Students (f_name, m_name, l_name, email_address, mobile_number) VALUES (?,?,?,?,?)";
    var inserts = [
       req.body.fname, 
       req.body.mname === "" ? null : req.body.mname, 
       req.body.lname, 
-      req.body.email, 
+      email,
       req.body.phone
    ];
    sql = mysql.pool.query(sql,inserts,function(error, results, fields){
