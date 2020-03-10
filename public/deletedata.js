@@ -1,3 +1,5 @@
+// Delete Data
+
 function deleteClass(id){
     $.ajax({
         url: '/admin/class/' + id,
@@ -47,3 +49,7 @@ function deleteSubject(id){
         }
     })
  };
+
+
+
+ 
