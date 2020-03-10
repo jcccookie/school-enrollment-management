@@ -1,12 +1,26 @@
-{{!-- <html>
-<h1>Edit {{student.fname}} {{student.lname}}:</h1>
-<form id="edit-student" action="/admin/student" method="post">
-    First name: <input type="text" name="fname" value="{{student.fname}}"><br>
-    Middle name: <input type="text" name="mname" value="{{student.mname}}"><br>
-    Last name: <input type="text" name="lname" value="{{student.lname}}"><br>
-    Email Address: <span>{{student.email}}</span><br>
-    Mobile: <input type="text" name="mobile" value="{{student.mobile}}"><br>
+<html>
+<h1>Edit Class</h1>
+<form id="edit-class" action="/admin/class" method="post">
+    Subject: <select name="subject" id="subject-selector">
+       <option value="none">None</option>
+      {{#each subjects}}
+      <option value={{id}}>{{name}}</option>
+      {{/each}}
+   </select><br>
+   Term: <select name="term" id="term-selector">
+      <option value="none">None</option>
+      {{#each terms}}
+      <option value={{id}}>{{name}} {{year}}</option>
+      {{/each}}
+   </select><br>
+   Name: <input type="text" name="name" value="{{class.name}}"><br>
+   Max Number: <input type="number" name="max" value="{{class.max}}"><br>
+   Credit: <input type="number" name="credit" value="{{class.credit}}"><br>
 </form>
-<button onclick="editStudent({{student.id}})">Save</button>
+<button onclick="editClass({{class.id}})">Save</button>
 <input type="button" value="Cancel" onclick="history.back()">
-</html> --}}
+<script defer>
+   selectSubject({{class.sid}});
+   selectTerm({{class.tid}});
+</script>
+</html>

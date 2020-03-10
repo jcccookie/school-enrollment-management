@@ -1,8 +1,8 @@
 function editClass(id){
     $.ajax({
-        url: '/admin/student/' + id,
+        url: '/admin/class/' + id,
         type: 'PUT',
-        data: $('#edit-student').serialize(),
+        data: $('#edit-class').serialize(),
         success: function(result){
             window.location.replace("/admin/");
         }
