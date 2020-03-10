@@ -1,24 +1,25 @@
 var express = require('express');
 var mysql = require('./dbcon.js');
-const path = require('path');
+var bodyParser = require('body-parser');
 
 var app = express();
 var handlebars = require('express-handlebars');
 
 app.engine('handlebars', handlebars());
 app.set('view engine', 'handlebars');
-
-app.set('port', process.argv[2]);
-
-// Body Parser Middleware
+app.use(bodyParser.urlencoded({extended:true}));
 app.use(express.json());
-app.use(express.urlencoded({ extended: false }));
-// Set mysql
-app.set('mysql', mysql);
 
 //Static files
 app.use('/static', express.static('public'));
 app.use('/', express.static('public'));
+
+app.set('port', process.argv[2]);
+
+
+// Set mysql
+app.set('mysql', mysql);
+
 
 app.get('/',function(req,res){
   res.render('index')
