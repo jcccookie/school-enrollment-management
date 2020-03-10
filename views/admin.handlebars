@@ -70,7 +70,7 @@
 </div>
 
 <div id="head">
-   <h3> Class List </h3>
+   <h3> Class List (Update Nullable) </h3>
 </div>
 <table id="classes">
    <thead>
@@ -91,6 +91,12 @@
          <td> {{enroll}} </td>
          <td> {{max}} </td>
          <td> {{credit}} </td>
+         <td><a href="/admin/class/{{id}}">Edit</a></td>
+         <td>
+            <button
+               onclick="deleteClass({{id}})"
+            > Delete </button>
+         </td>
       </tr>
       {{/each}}
    </tbody>
@@ -117,12 +123,12 @@
          <td> {{lname}} </td>
          <td> {{email}} </td>
          <td> {{mobile}} </td>
+         <td><a href="/admin/student/{{id}}">Edit</a></td>
          <td>
             <button
                onclick="deleteStudent({{id}})"
             > Delete </button>
          </td>
-         <td><a href="/admin/student/{{id}}">Edit</a></td>
       </tr>
       {{/each}}
    </tbody>

@@ -35,6 +35,19 @@ module.exports = function(){
      });
    }
 
+   function getSingleClass(res, mysql, context, id, complete){
+      var sql = "SELECT class_id as id,  FROM Classes WHERE class_id = ?";
+      var inserts = [id];
+      mysql.pool.query(sql, inserts, function(error, results, fields){
+          if(error){
+              res.write(JSON.stringify(error));
+              res.end();
+          }
+          context.student = results[0];
+          complete();
+      });
+  }
+
    function getStudents(res, mysql, context, complete){
       mysql.pool.query("SELECT student_id AS id, f_name AS fname, m_name AS mname, l_name AS lname, email_address AS email, mobile_number AS mobile FROM Students", function(error, results, fields){
          if(error){
@@ -84,7 +97,7 @@ module.exports = function(){
    router.get('/', function(req, res) {
       var callbackCount = 0;
       var context = {};
-      context.jsscripts = ["deleteData.js"];
+      context.jsscripts = ["deletedata.js"];
       var mysql = req.app.get('mysql');
       getSubject(res, mysql, context, complete);
       getTerm(res, mysql, context, complete);
@@ -100,11 +113,26 @@ module.exports = function(){
       }
    })
 
+   // Display a class for UPDATE
+   router.get('/class/:id', function(req, res) {
+      var callbackCount = 0;
+      var context = {};
+      context.jsscripts = ["editdata.js"];
+      var mysql = req.app.get('mysql');
+      getSingleClass(res, mysql, context, req.params.id, complete);
+      function complete(){
+         callbackCount++;
+         if(callbackCount >= 1){
+               res.render('edit-class', context);
+         }
+      }
+   })
+
    // Display a student for UPDATE
    router.get('/student/:id', function(req, res) {
       var callbackCount = 0;
       var context = {};
-      context.jsscripts = ["editstudent.js"];
+      context.jsscripts = ["editdata.js"];
       var mysql = req.app.get('mysql');
       getSingleStudent(res, mysql, context, req.params.id, complete);
       function complete(){
@@ -215,6 +243,24 @@ module.exports = function(){
       });
    });
 
+   router.put('/class/:id', function(req, res){
+      var mysql = req.app.get('mysql');
+      console.log(req.body)
+      console.log(req.params.id)
+      var sql = "UPDATE Students SET f_name=?, m_name=?, l_name=?, mobile_number=?, email_address=? WHERE student_id=?";
+      var inserts = [req.body.fname, req.body.mname, req.body.lname, req.body.mobile, email, req.params.id];
+      sql = mysql.pool.query(sql,inserts,function(error, results, fields){
+          if(error){
+              console.log(error)
+              res.write(JSON.stringify(error));
+              res.end();
+          }else{
+              res.status(200);
+              res.end();
+          }
+      });
+  });
+
    router.put('/student/:id', function(req, res){
       var mysql = req.app.get('mysql');
       console.log(req.body)
@@ -233,6 +279,22 @@ module.exports = function(){
           }
       });
   });
+
+  router.delete('/class/:id', function(req, res){
+   var mysql = req.app.get('mysql');
+   var sql = "DELETE FROM Classes WHERE class_id = ?";
+   var inserts = [req.params.id];
+   sql = mysql.pool.query(sql, inserts, function(error, results, fields){
+       if(error){
+           console.log(error)
+           res.write(JSON.stringify(error));
+           res.status(400);
+           res.end();
+       }else{
+           res.status(202).end();
+       }
+   })
+})
 
 
    router.delete('/student/:id', function(req, res){

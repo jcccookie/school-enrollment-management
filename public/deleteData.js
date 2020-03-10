@@ -1,3 +1,13 @@
+function deleteClass(id){
+    $.ajax({
+        url: '/admin/class/' + id,
+        type: 'DELETE',
+        success: function(result){
+            window.location.reload(true);
+        }
+    })
+ };
+
 function deleteStudent(id){
    $.ajax({
        url: '/admin/student/' + id,
