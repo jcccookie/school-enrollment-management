@@ -1,9 +1,7 @@
 <div id="menuBar">
    <a class="active" href="/">Home</a>
-   <a href="classes">Class</a>
    <a href="search">Search</a>
-   <a href="account">Account</a>
-   <a href="signup">Sign Up</a>
+   <a href="classes">Class</a>
    <a href="admin">Admin</a>
 </div>  
 <div id="head">
@@ -19,7 +17,6 @@
 
 <table id="studentClasses">
    <thead>
-      <th> Class Id</th>
       <th> Subject </th>
       <th> Term </th>
       <th> Class </th>
@@ -30,14 +27,12 @@
    <tboad>
       {{#each classes}}
       <tr>
-         <td> {{id}} </td>
          <td> {{sname}} </td>
          <td> {{tname}} {{tyear}}</td>
          <td> {{cname}} </td>
          <td> {{enroll}} </td>
          <td> {{max}} </td>
          <td> {{credit}} </td>
-         <td><button onclick="deleteClass({{id}})">Delete</button></td>
       </tr>
       {{/each}}
    </tbody>
