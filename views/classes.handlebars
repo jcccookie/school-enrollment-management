@@ -1,27 +1,31 @@
 <div id="menuBar">
    <a class="active" href="/">Home</a>
-      <a href="search">Search</a>
    <a href="classes">Class</a>
+   <a href="search">Search</a>
+   <a href="account">Account</a>
+   <a href="signup">Sign Up</a>
    <a href="admin">Admin</a>
 </div>  
 <div id="head">
-      <h1> Check Enrolled Classes </h1>
+      <h1> Class Schedules </h1>
 </div>
 
 <form id="class_search" action="" method="">
     <label> Search by your Student ID</label>
-    <input id="studentID" type="text" name="studentID" value="">
-    <input type="button" value="Search" onclick="getClasses()">
+    <input id="student_ID" type="text" name="student_ID" value="">
+    <input type="button" value="Search" onclick="getStudentID()">
 </form>
+
 
 <table id="studentClasses">
    <thead>
+      <th> Class Id</th>
+      <th> Subject </th>
       <th> Term </th>
       <th> Class </th>
-      <th> Subject </th>
-      <th> Credit </th>
-      <th> Fees </th>
-      <th> Paid </th>
+      <th> Enrolled Students </th>
+      <th> Max Students </th>
+      <th> Credits </th>
    </thead>
    <tboad>
       {{#each classes}}
@@ -33,6 +37,7 @@
          <td> {{enroll}} </td>
          <td> {{max}} </td>
          <td> {{credit}} </td>
+         <td><button onclick="deleteClass({{id}})">Delete</button></td>
       </tr>
       {{/each}}
    </tbody>
