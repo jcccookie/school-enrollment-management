@@ -8,6 +8,16 @@ function deleteStudent(id){
    })
 };
 
+function deleteAccount(id){
+    $.ajax({
+        url: '/admin/account/' + id,
+        type: 'DELETE',
+        success: function(result){
+            window.location.reload(true);
+        }
+    })
+ };
+
 function deleteSubject(id){
     $.ajax({
         url: '/admin/subject/' + id,

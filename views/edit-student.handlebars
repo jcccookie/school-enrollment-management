@@ -1,0 +1,11 @@
+<html>
+<h1>Edit {{student.fname}} {{student.lname}}:</h1>
+<form id="edit-student" action="/admin/student" method="post">
+    First name: <input type="text" name="fname" value="{{student.fname}}"><br>
+    Middle name: <input type="text" name="mname" value="{{student.mname}}"><br>
+    Last name: <input type="text" name="lname" value="{{student.lname}}"><br>
+    Email Address: <span>{{student.email}}</span><br>
+    Mobile: <input type="text" name="mobile" value="{{student.mobile}}"><br>
+</form>
+<button onclick="editStudent({{student.id}})">Save</button>
+</html>

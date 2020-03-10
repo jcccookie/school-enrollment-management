@@ -46,6 +46,19 @@ module.exports = function(){
      });
    }
 
+   function getSingleStudent(res, mysql, context, id, complete){
+      var sql = "SELECT student_id as id, f_name as fname, l_name as lname, m_name as mname, mobile_number as mobile, email_address as email FROM Students WHERE student_id = ?";
+      var inserts = [id];
+      mysql.pool.query(sql, inserts, function(error, results, fields){
+          if(error){
+              res.write(JSON.stringify(error));
+              res.end();
+          }
+          context.student = results[0];
+          complete();
+      });
+  }
+
    function getAccounts(res, mysql, context, complete){
       mysql.pool.query("SELECT Account.account_id AS id, (SELECT student_id FROM Students WHERE student_id = Account.student_id) AS sid, (SELECT f_name FROM Students WHERE student_id = Account.student_id) AS fname, (SELECT l_name FROM Students WHERE student_id = Account.student_id) AS lname, SUM(Classes.class_credit) AS credit, SUM(Classes.class_credit * 500) AS amount FROM Account LEFT JOIN Account_Details ON Account_Details.account_id = Account.account_id LEFT JOIN Classes ON Account_Details.class_id = Classes.class_id GROUP BY Account.account_id ORDER BY Account.account_id", function(error, results, fields){
          if(error){
@@ -83,6 +96,21 @@ module.exports = function(){
          callbackCount++;
          if(callbackCount >= 6){
                res.render('admin', context);
+         }
+      }
+   })
+
+   // Display a student for UPDATE
+   router.get('/student/:id', function(req, res) {
+      var callbackCount = 0;
+      var context = {};
+      context.jsscripts = ["editstudent.js"];
+      var mysql = req.app.get('mysql');
+      getSingleStudent(res, mysql, context, req.params.id, complete);
+      function complete(){
+         callbackCount++;
+         if(callbackCount >= 1){
+               res.render('edit-student', context);
          }
       }
    })
@@ -187,6 +215,26 @@ module.exports = function(){
       });
    });
 
+   router.put('/student/:id', function(req, res){
+      var mysql = req.app.get('mysql');
+      console.log(req.body)
+      console.log(req.params.id)
+      var email = `${req.body.fname.toLowerCase()}@oregonstate.edu`;
+      var sql = "UPDATE Students SET f_name=?, m_name=?, l_name=?, mobile_number=?, email_address=? WHERE student_id=?";
+      var inserts = [req.body.fname, req.body.mname, req.body.lname, req.body.mobile, email, req.params.id];
+      sql = mysql.pool.query(sql,inserts,function(error, results, fields){
+          if(error){
+              console.log(error)
+              res.write(JSON.stringify(error));
+              res.end();
+          }else{
+              res.status(200);
+              res.end();
+          }
+      });
+  });
+
+
    router.delete('/student/:id', function(req, res){
       var mysql = req.app.get('mysql');
       var sql = "DELETE FROM Students WHERE student_id = ?";
@@ -202,6 +250,22 @@ module.exports = function(){
           }
       })
   })
+
+  router.delete('/account/:id', function(req, res){
+   var mysql = req.app.get('mysql');
+   var sql = "DELETE FROM Account WHERE account_id = ?";
+   var inserts = [req.params.id];
+   sql = mysql.pool.query(sql, inserts, function(error, results, fields){
+       if(error){
+           console.log(error)
+           res.write(JSON.stringify(error));
+           res.status(400);
+           res.end();
+       }else{
+           res.status(202).end();
+       }
+   })
+})
 
   router.delete('/subject/:id', function(req, res){
    var mysql = req.app.get('mysql');

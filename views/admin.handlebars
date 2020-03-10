@@ -122,6 +122,7 @@
                onclick="deleteStudent({{id}})"
             > Delete </button>
          </td>
+         <td><a href="/admin/student/{{id}}">Edit</a></td>
       </tr>
       {{/each}}
    </tbody>
@@ -146,6 +147,11 @@
          <td> {{fname}} {{lname}} </td>
          <td> {{amount}} </td>
          <td> {{credit}} </td>
+         <td>
+            <button
+               onclick="deleteAccount({{id}})"
+            > Delete </button>
+         </td>
       </tr>
       {{/each}}
    </tbody>
