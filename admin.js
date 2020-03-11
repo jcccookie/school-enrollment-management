@@ -119,9 +119,11 @@ module.exports = function(){
       console.log(req.body)
       var mysql = req.app.get('mysql');
       var sql = "INSERT INTO Classes (subject_id, term_id, class_name, class_student_max, class_credit) VALUES (?,?,?,?,?)";
+      var subject = req.body.subject === "none" ? null : req.body.subject;
+      var term = req.body.term === "none" ? null : req.body.term;
       var inserts = [
-         req.body.subject, 
-         req.body.term, 
+         subject, 
+         term, 
          req.body.name, 
          req.body.max, 
          req.body.credit

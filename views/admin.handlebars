@@ -16,17 +16,19 @@
 <h3>Add Class</h3>
 <form id="addClass" action="/admin/class" method="post">
    Subject: <select name="subject"> 
+      <option value="none">None</option>
       {{#each subjects}}
       <option value={{id}}>{{name}}</option>
       {{/each}}
     </select><br>
    Term: <select name="term">
+      <option value="none">None</option>
       {{#each terms}}
       <option value={{id}}>{{name}} {{year}}</option>
       {{/each}}
    </select><br>
    Name: <input type="text" name="name"><br>
-   Max: <input type="number" name="max"><br>
+   Max Students: <input type="number" name="max"><br>
    Credit: <input type="number" name="credit"><br>
    <input type="submit" value="Add">
 </form>
