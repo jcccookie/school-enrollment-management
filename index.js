@@ -20,16 +20,11 @@ app.set('port', process.argv[2]);
 // Set mysql
 app.set('mysql', mysql);
 
-
 app.get('/',function(req,res){
   res.render('index')
 });
 
 app.use('/classes', require('./classes.js'));
-
-app.get('/edit',function(req,res){
-  res.render('edit');
-});
 
 app.use('/search', require('./search.js'));
 

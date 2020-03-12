@@ -81,7 +81,6 @@ module.exports = function(){
                 res.status(400);
                 res.end(); 
             }else{
-                // res.redirect('/search/'+aid);
                 res.status(202).end();
             }
         })
