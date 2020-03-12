@@ -16,7 +16,6 @@ app.use('/', express.static('public'));
 
 app.set('port', process.argv[2]);
 
-
 // Set mysql
 app.set('mysql', mysql);
 

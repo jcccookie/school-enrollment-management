@@ -13,27 +13,3 @@
     <input id="student_ID" type="text" name="student_ID" value="">
     <input type="button" value="Search" onclick="getStudentID()">
 </form>
-<a href="/classes/">Clear</a>
-
-<table id="studentClasses">
-   <thead>
-      <th> Subject </th>
-      <th> Term </th>
-      <th> Class </th>
-      <th> Enrolled Students </th>
-      <th> Max Students </th>
-      <th> Credits </th>
-   </thead>
-   <tboad>
-      {{#each classes}}
-      <tr>
-         <td> {{sname}} </td>
-         <td> {{tname}} {{tyear}}</td>
-         <td> {{cname}} </td>
-         <td> {{enroll}} </td>
-         <td> {{max}} </td>
-         <td> {{credit}} </td>
-      </tr>
-      {{/each}}
-   </tbody>
-</table>   
