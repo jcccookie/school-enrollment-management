@@ -1,5 +1,4 @@
-// Delete Data
-
+// admin page
 function deleteClass(id){
     $.ajax({
         url: '/admin/class/' + id,
@@ -50,6 +49,13 @@ function deleteSubject(id){
     })
  };
 
-
-
- 
+ // class page
+ function deleteClassById(cid, aid){
+    $.ajax({
+        url: '/classes/search/cid/' + cid + '/aid/' + aid,
+        type: 'DELETE',
+        success: function(result){
+            window.location.reload(true);
+        }
+    })
+ };

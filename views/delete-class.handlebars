@@ -33,6 +33,12 @@
          <td> {{enroll}} </td>
          <td> {{max}} </td>
          <td> {{credit}} </td>
+         <td>
+            <button
+               {{!-- Class Id --}}
+               onclick="deleteClassById({{id}}, {{aid}})"
+            > Delete </button>
+         </td>
       </tr>
       {{/each}}
    </tbody>
