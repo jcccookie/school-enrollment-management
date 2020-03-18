@@ -1,213 +1,240 @@
-<div id="menuBar">
-   <a class="active" href="/">Home</a>
-   <a href="search">Search</a>
-   <a href="classes">Class</a>
-   <a href="admin">Admin</a>
+<nav class="navbar navbar-expand-md bg-light navbar-light">
+   <a class="navbar-brand" href="/">School Enrollment Manager</a>
+   <div class="navbar-collapse collapse w-100 order-1 order-md-0 dual-collapse2">
+      <ul class="navbar-nav mr-auto">
+         <li class="nav-item">
+            <a class="nav-link" href="search">Search</a>
+         </li>
+         <li class="nav-item">
+            <a class="nav-link" href="classes">Class</a>
+         </li>
+      </ul>
+   </div>
+    <div class="navbar-collapse collapse w-100 order-3 dual-collapse2">
+        <ul class="navbar-nav ml-auto">
+            <li class="nav-item">
+                <a class="nav-link" href="admin">Admin</a>
+            </li>
+        </ul>
+    </div>
+</nav>
+
+<div class="container">
+
+<h3>Classes</h3>
+<div class="container">
+   <div class="row">
+      <div class="col-4">
+         <form id="addClass" action="/admin/class" method="post">
+            Subject: <select name="subject"> 
+               <option value="none">None</option>
+               {{#each subjects}}
+               <option value={{id}}>{{name}}</option>
+               {{/each}}
+            </select><br>
+            Term: <select name="term">
+               <option value="none">None</option>
+               {{#each terms}}
+               <option value={{id}}>{{name}} {{year}}</option>
+               {{/each}}
+            </select><br>
+            Name: <input type="text" name="name"><br>
+            Max Students: <input type="number" name="max"><br>
+            Credit: <input type="number" name="credit"><br>
+            <input type="submit" value="Add">
+         </form>
+      </div>
+      <div class="col-8">
+         <table id="classes">
+            <thead>
+               <th> Id </th>
+               <th> Subject </th>
+               <th> Term </th>
+               <th> Name </th>
+               <th> Enrolled </th>
+               <th> Cap </th>
+               <th> Credit </th>
+            </thead>
+            <tbody>
+               {{#each classes}}
+               <tr>
+                  <td> {{id}} </td>
+                  <td> {{sname}} </td>
+                  <td> {{tname}} {{tyear}}</td>
+                  <td> {{cname}} </td>
+                  <td> {{enroll}} </td>
+                  <td> {{max}} </td>
+                  <td> {{credit}} </td>
+                  <td><a href="/admin/class/{{id}}">Edit</a></td>
+                  <td>
+                     <button
+                        onclick="deleteClass({{id}})"
+                     > Delete </button>
+                  </td>
+               </tr>
+               {{/each}}
+            </tbody>
+         </table> 
+      </div>
+   </div>
 </div>
 
-<div id="title">
-   <h1>Admin Page</h1>
+
+<h3>Students</h3>
+<div class="container">
+   <div class="row">
+      <div class="col-4">
+         <form id="addStudent" action="/admin/student" method="post">
+            First Name: <input type="text" name="fname"><br>
+            Middle Name: <input type="text" name="mname"><br>
+            Last Name: <input type="text" name="lname"><br>
+            Email: <span>your_first_name@oregonstate.edu</span><br>
+            Phone Number: <input type="text" name="phone"><br>
+            <input type="submit" value="Add">
+         </form>
+      </div>
+      <div class="col-8">
+         <table id="students">
+            <thead>
+               <th> Id </th>
+               <th> First Name </th>
+               <th> Middle Name </th>
+               <th> Last Name </th>
+               <th> Email </th>
+               <th> Mobile </th>
+            </thead>
+            <tbody>
+               {{#each students}}
+               <tr>
+                  <td> {{id}} </td>
+                  <td> {{fname}} </td>
+                  <td> {{mname}} </td>
+                  <td> {{lname}} </td>
+                  <td> {{email}} </td>
+                  <td> {{mobile}} </td>
+                  <td><a href="/admin/student/{{id}}">Edit</a></td>
+                  <td>
+                     <button
+                        onclick="deleteStudent({{id}})"
+                     > Delete </button>
+                  </td>
+               </tr>
+               {{/each}}
+            </tbody>
+         </table>
+      </div>
+   </div>
 </div>
 
-<div id="subtitle">
-   <h2>Add Data</h2>
+<h3>Accounts</h3>
+<div class="container">
+   <div class="row">
+      <div class="col-4">
+         <form id="addAccount" action="/admin/account" method="post">
+            Students with no account: <select name="sid"> 
+               {{#each noaccount}}
+               <option value={{id}}>Student Id: {{id}} Name: {{fname}} {{lname}}</option>
+               {{/each}}
+            </select><br>
+            <input type="submit" value="Add">
+         </form>
+      </div>
+      <div class="col-8">
+         <table id="accounts">
+            <thead>
+               <th> Id </th>
+               <th> Student Id </th>
+               <th> Name </th>
+               <th> Amount Due </th>
+               <th> Total Credit </th>
+            </thead>
+            <tbody>
+               {{#each accounts}}
+               <tr>
+                  <td> {{id}} </td>
+                  <td> {{sid}} </td>
+                  <td> {{fname}} {{lname}} </td>
+                  <td> {{amount}} </td>
+                  <td> {{credit}} </td>
+                  <td>
+                     <button
+                        onclick="deleteAccount({{id}})"
+                     > Delete </button>
+                  </td>
+               </tr>
+               {{/each}}
+            </tbody>
+         </table> 
+      </div>
+   </div>
 </div>
 
-<h3>Add Class</h3>
-<form id="addClass" action="/admin/class" method="post">
-   Subject: <select name="subject"> 
-      <option value="none">None</option>
-      {{#each subjects}}
-      <option value={{id}}>{{name}}</option>
-      {{/each}}
-    </select><br>
-   Term: <select name="term">
-      <option value="none">None</option>
-      {{#each terms}}
-      <option value={{id}}>{{name}} {{year}}</option>
-      {{/each}}
-   </select><br>
-   Name: <input type="text" name="name"><br>
-   Max Students: <input type="number" name="max"><br>
-   Credit: <input type="number" name="credit"><br>
-   <input type="submit" value="Add">
-</form>
-
-<h3>Add Student</h3>
-<form id="addStudent" action="/admin/student" method="post">
-   First Name: <input type="text" name="fname"><br>
-   Middle Name: <input type="text" name="mname"><br>
-   Last Name: <input type="text" name="lname"><br>
-   Email: <span>your_first_name@oregonstate.edu</span><br>
-   Phone Number: <input type="text" name="phone"><br>
-   <input type="submit" value="Add">
-</form>
-
-<h3>Add Account</h3>
-<form id="addAccount" action="/admin/account" method="post">
-   Students with no account: <select name="sid"> 
-      {{#each noaccount}}
-      <option value={{id}}>Student Id: {{id}} Name: {{fname}} {{lname}}</option>
-      {{/each}}
-    </select><br>
-    <input type="submit" value="Add">
-</form>
-
-<h3>Add Subject</h3>
-<form id="addSubject" action="/admin/subject" method="post">
-   Subject Name: <input type="text" name="name"><br>
-   <input type="submit" value="Add">
-</form>
-
-<h3>Add Term</h3>
-<form id="addTerm" action="/admin/term" method="post">
-   Term Name: <input type="text" name="name"><br>
-   Year: <input type="number" name="year"><br>
-   Max Credit: <input type="number" name="max"><br>
-   <input type="submit" value="Add">
-</form>
-
-<div id="subtitle">
-   <h2>DB Tables</h2>
+<h3>Subjects</h3>
+<div class="container">
+   <div class="row">
+      <div class="col-4">
+         <form id="addSubject" action="/admin/subject" method="post">
+            Subject Name: <input type="text" name="name"><br>
+            <input type="submit" value="Add">
+         </form>
+      </div>
+      <div class="col-8">
+         <table id="subjects">
+            <thead>
+               <th> Subject Name </th>
+            </thead>
+            <tbody>
+               {{#each subjects}}
+               <tr>
+                  <td> {{name}} </td>
+                  <td>
+                     <button
+                        onclick="deleteSubject({{id}})"
+                     > Delete </button>
+                  </td>
+               </tr>
+               {{/each}}
+            </tbody>
+         </table>
+      </div>
+   </div>
 </div>
 
-<div id="head">
-   <h3> Class List (Update Nullable associated with Terms and Subjects) </h3>
+<h3>Terms</h3>
+<div class="container">
+   <div class="row">
+      <div class="col-4">
+         <form id="addTerm" action="/admin/term" method="post">
+            Term Name: <input type="text" name="name"><br>
+            Year: <input type="number" name="year"><br>
+            Max Credit: <input type="number" name="max"><br>
+            <input type="submit" value="Add">
+         </form>
+      </div>
+      <div class="col-8">
+         <table id="terms">
+            <thead>
+               <th> Name </th>
+               <th> Year </th>
+               <th> Max Credit </th>
+            </thead>
+            <tbody>
+               {{#each terms}}
+               <tr>
+                  <td> {{name}} </td>
+                  <td> {{year}} </td>
+                  <td> {{max}} </td>
+                  <td>
+                     <button
+                        onclick="deleteTerm({{id}})"
+                     > Delete </button>
+                  </td>
+               </tr>
+               {{/each}}
+            </tbody>
+         </table>
+      </div>
+   </div>
 </div>
-<table id="classes">
-   <thead>
-      <th> Id </th>
-      <th> Subject </th>
-      <th> Term </th>
-      <th> Name </th>
-      <th> Enrolled </th>
-      <th> Cap </th>
-      <th> Credit </th>
-   </thead>
-   <tbody>
-      {{#each classes}}
-      <tr>
-         <td> {{id}} </td>
-         <td> {{sname}} </td>
-         <td> {{tname}} {{tyear}}</td>
-         <td> {{cname}} </td>
-         <td> {{enroll}} </td>
-         <td> {{max}} </td>
-         <td> {{credit}} </td>
-         <td><a href="/admin/class/{{id}}">Edit</a></td>
-         <td>
-            <button
-               onclick="deleteClass({{id}})"
-            > Delete </button>
-         </td>
-      </tr>
-      {{/each}}
-   </tbody>
-</table> 
 
-<div id="head">
-   <h3> Student List </h3>
 </div>
-<table id="students">
-   <thead>
-      <th> Id </th>
-      <th> First Name </th>
-      <th> Middle Name </th>
-      <th> Last Name </th>
-      <th> Email </th>
-      <th> Mobile </th>
-   </thead>
-   <tbody>
-      {{#each students}}
-      <tr>
-         <td> {{id}} </td>
-         <td> {{fname}} </td>
-         <td> {{mname}} </td>
-         <td> {{lname}} </td>
-         <td> {{email}} </td>
-         <td> {{mobile}} </td>
-         <td><a href="/admin/student/{{id}}">Edit</a></td>
-         <td>
-            <button
-               onclick="deleteStudent({{id}})"
-            > Delete </button>
-         </td>
-      </tr>
-      {{/each}}
-   </tbody>
-</table>   
-
-<div id="head">
-   <h3> Account List </h3>
-</div>
-<table id="accounts">
-   <thead>
-      <th> Id </th>
-      <th> Student Id </th>
-      <th> Name </th>
-      <th> Amount Due </th>
-      <th> Total Credit </th>
-   </thead>
-   <tbody>
-      {{#each accounts}}
-      <tr>
-         <td> {{id}} </td>
-         <td> {{sid}} </td>
-         <td> {{fname}} {{lname}} </td>
-         <td> {{amount}} </td>
-         <td> {{credit}} </td>
-         <td>
-            <button
-               onclick="deleteAccount({{id}})"
-            > Delete </button>
-         </td>
-      </tr>
-      {{/each}}
-   </tbody>
-</table>   
-
-<div id="head">
-   <h3> Subject List </h3>
-</div>
-<table id="subjects">
-   <thead>
-      <th> Subject Name </th>
-   </thead>
-   <tbody>
-      {{#each subjects}}
-      <tr>
-         <td> {{name}} </td>
-         <td>
-            <button
-               onclick="deleteSubject({{id}})"
-            > Delete </button>
-         </td>
-      </tr>
-      {{/each}}
-   </tbody>
-</table>
-
-<div id="head">
-   <h3> Term List </h3>
-</div>
-<table id="terms">
-   <thead>
-      <th> Name </th>
-      <th> Year </th>
-      <th> Max Credit </th>
-   </thead>
-   <tbody>
-      {{#each terms}}
-      <tr>
-         <td> {{name}} </td>
-         <td> {{year}} </td>
-         <td> {{max}} </td>
-         <td>
-            <button
-               onclick="deleteTerm({{id}})"
-            > Delete </button>
-         </td>
-      </tr>
-      {{/each}}
-   </tbody>
-</table>

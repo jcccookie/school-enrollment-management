@@ -82,6 +82,7 @@ module.exports = function(){
                 res.end(); 
             }else{
                 res.status(202).end();
+                // res.redirect('/search');
             }
         })
     })

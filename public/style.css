@@ -1,4 +1,6 @@
-html {
+
+
+/* html {
    font-family: sans-serif;
  }
  body {
@@ -9,8 +11,8 @@ html {
  table {
   max-width: 900px;
   /* margin: auto; */
-}
-
+/* } */
+/* 
 #menuBar {
 	width: 100%;
   background-color: lightgrey;
@@ -51,4 +53,10 @@ h1 {
 
 #classButton, #accountButton, #searchButton {
   display: inline-block;
+} */
+
+.card {
+  margin: 0 auto;
+  float: none; 
+  margin-bottom: 10px; 
 }

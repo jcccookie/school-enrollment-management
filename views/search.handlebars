@@ -1,56 +1,81 @@
-<div id="menuBar">
-   <a class="active" href="/">Home</a>
-   <a href="search">Search</a>
-   <a href="classes">Class</a>
-   <a href="admin">Admin</a>
-</div>  
-<div id="head">
-      <h1> Search Classes </h1>
+<nav class="navbar navbar-expand-md bg-light navbar-light">
+   <a class="navbar-brand" href="/">School Enrollment Manager</a>
+   <div class="navbar-collapse collapse w-100 order-1 order-md-0 dual-collapse2">
+      <ul class="navbar-nav mr-auto">
+         <li class="nav-item">
+            <a class="nav-link" href="search">Search</a>
+         </li>
+         <li class="nav-item">
+            <a class="nav-link" href="classes">Class</a>
+         </li>
+      </ul>
+   </div>
+    <div class="navbar-collapse collapse w-100 order-3 dual-collapse2">
+        <ul class="navbar-nav ml-auto">
+            <li class="nav-item">
+                <a class="nav-link" href="admin">Admin</a>
+            </li>
+        </ul>
+    </div>
+</nav>
+
+<div class="container">
+   <h2 class="mb-3"> Search Classes </h2>
+
+   <div class="row">
+      <div class="col-sm-6">
+         <form id="filterSubjectForm" action="" method="">
+            <div class="form-group">
+               <label for="filterSubject">Filter by Subject</label>
+               <select class="form-control mb-2" id="filterSubject" name="subject">
+                  {{#each subjects}}
+                  <option value={{id}}>{{name}}</option>
+                  {{/each}}
+               </select>
+               <input class="mb-3 btn btn-info btn-md btn-block" type="button" value="Search" onclick="filterClassesBySubject()">
+            </div>
+         </form>
+      </div>
+      <div class="col-sm-6">
+         <form id="filterTermForm" action="" method="">
+            <div class="form-group">
+               <label for="filterTerm">Filter by Term</label>
+               <select class="form-control mb-2" id="filterTerm" name="term">
+                  {{#each terms}}
+                  <option value={{id}}>{{name}} {{year}}</option>
+                  {{/each}}
+               </select>
+               <input class="mb-3 btn btn-info btn-md btn-block" type="button" value="Search" onclick="filterClassesByTerm()">
+               
+            </div>
+         </form>
+      </div>
+   </div>
+   <a class="btn btn-dark btn-md btn-block mb-5" href="/search/">Clear</a>
+
+   <table class="table table-striped table-bordered text-center" id="classes">
+      <thead>
+         <th> Subject </th>
+         <th> Term </th>
+         <th> Name </th>
+         <th> Enrolled </th>
+         <th> Cap </th>
+         <th> Credit </th>
+         <th></th>
+      </thead>
+      <tbody>
+         {{#each classes}}
+         <tr>
+            <td> {{sname}} </td>
+            <td> {{tname}} {{tyear}}</td>
+            <td> {{cname}} </td>
+            <td> {{enroll}} </td>
+            <td> {{max}} </td>
+            <td> {{credit}} </td>
+            <td><a class="btn btn-warning" href="/search/class/{{id}}">Add</a></td>
+         </tr>
+         {{/each}}
+      </tbody>
+   </table> 
+
 </div>
-   
-<form id="filterSubjectForm" action="" method="">
-   Search by Subject: <select id="filterSubject" name="subject">
-      {{#each subjects}}
-      <option value={{id}}>{{name}}</option>
-      {{/each}}
-    </select>
-   <input type="button" value="Search" onclick="filterClassesBySubject()">
-   <a href="/search/">Clear</a>
-</form>
-
-<form id="filterTermForm" action="" method="">
-   Search by Term: <select id="filterTerm" name="term">
-      {{#each terms}}
-      <option value={{id}}>{{name}} {{year}}</option>
-      {{/each}}
-    </select>
-   <input type="button" value="Search" onclick="filterClassesByTerm()">
-   <a href="/search/">Clear</a>
-</form>
-
-
-<table id="classes">
-   <thead>
-      <th> Subject </th>
-      <th> Term </th>
-      <th> Name </th>
-      <th> Enrolled </th>
-      <th> Cap </th>
-      <th> Credit </th>
-   </thead>
-   <tbody>
-      {{#each classes}}
-      <tr>
-         <td> {{sname}} </td>
-         <td> {{tname}} {{tyear}}</td>
-         <td> {{cname}} </td>
-         <td> {{enroll}} </td>
-         <td> {{max}} </td>
-         <td> {{credit}} </td>
-         <td><a href="/search/class/{{id}}">Add</a></td>
-      </tr>
-      {{/each}}
-   </tbody>
-</table> 
-
-<h3>Adding a class by email address => M:M INSERT (Classes and Accounts)</h3>

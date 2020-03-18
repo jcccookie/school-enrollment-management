@@ -1,8 +1,12 @@
 <html>
-<h1>Add Class</h1>
-<h3>Add a class by email address</h3>
-<form id="add-class" action="/search/class/{{id}}" method="post">
-   <input id="email" type="text" name="email" value="">@oregonstate.edu
-   <input type="submit" value="Add">
-</form>
+   <div class="mt-5">
+      <div class="mx-auto" style="width: 30rem;">
+         <h3>Add a class by email address</h3>
+         <form class="form-inline" id="add-class" action="/search/class/{{id}}" method="post">
+            <input class="mx-sm-1" id="email" type="text" name="email" value="">
+            <span class="mr-3">@oregonstate.edu</span>
+            <input class="btn btn-warning" type="submit" value="Add">
+         </form>
+      </div>
+   </div>
 </html>

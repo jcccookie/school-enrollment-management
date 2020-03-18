@@ -1,45 +1,61 @@
-<div id="menuBar">
-   <a class="active" href="/">Home</a>
-   <a href="search">Search</a>
-   <a href="classes">Class</a>
-   <a href="admin">Admin</a>
-</div>  
-<div id="head">
-   <h1> Check Enrolled Classes </h1>
+<nav class="navbar navbar-expand-md bg-light navbar-light">
+   <a class="navbar-brand" href="/">School Enrollment Manager</a>
+   <div class="navbar-collapse collapse w-100 order-1 order-md-0 dual-collapse2">
+      <ul class="navbar-nav mr-auto">
+         <li class="nav-item">
+            <a class="nav-link" href="search">Search</a>
+         </li>
+         <li class="nav-item">
+            <a class="nav-link" href="classes">Class</a>
+         </li>
+      </ul>
+   </div>
+    <div class="navbar-collapse collapse w-100 order-3 dual-collapse2">
+        <ul class="navbar-nav ml-auto">
+            <li class="nav-item">
+                <a class="nav-link" href="admin">Admin</a>
+            </li>
+        </ul>
+    </div>
+</nav>
+<div class="container">
+   <h2 class="mb-3"> Check Enrolled Classes </h2>
+
+   <form id="class_search" action="" method="">
+      <label class="mr-3"> Search by your Student ID(Click button not Enter)</label>
+      <input class="mx-sm-1" id="student_ID" type="text" name="student_ID" value="">
+      <input class="btn btn-info" type="button" value="Search" onclick="getStudentID()">
+      <a class="btn btn-dark" href="/classes/">Clear</a>
+   </form>
+
+   <table class="table table-striped table-bordered text-center" id="studentClasses">
+      <thead>
+         <th> Subject </th>
+         <th> Term </th>
+         <th> Class </th>
+         <th> Enrolled Students </th>
+         <th> Max Students </th>
+         <th> Credits </th>
+         <th></th>
+      </thead>
+      <tboad>
+         {{#each classes}}
+         <tr>
+            <td> {{sname}} </td>
+            <td> {{tname}} {{tyear}}</td>
+            <td> {{cname}} </td>
+            <td> {{enroll}} </td>
+            <td> {{max}} </td>
+            <td> {{credit}} </td>
+            <td>
+               <button
+                  class="btn btn-danger"
+                  onclick="deleteClassById({{id}}, {{aid}})"
+               > Delete </button>
+            </td>
+         </tr>
+         {{/each}}
+      </tbody>
+   </table>   
+
 </div>
-
-<form id="class_search" action="" method="">
-    <label> Search by your Student ID(Click button not Enter)</label>
-    <input id="student_ID" type="text" name="student_ID" value="">
-    <input type="button" value="Search" onclick="getStudentID()">
-</form>
-<a href="/classes/">Clear</a>
-
-<table id="studentClasses">
-   <thead>
-      <th> Subject </th>
-      <th> Term </th>
-      <th> Class </th>
-      <th> Enrolled Students </th>
-      <th> Max Students </th>
-      <th> Credits </th>
-   </thead>
-   <tboad>
-      {{#each classes}}
-      <tr>
-         <td> {{sname}} </td>
-         <td> {{tname}} {{tyear}}</td>
-         <td> {{cname}} </td>
-         <td> {{enroll}} </td>
-         <td> {{max}} </td>
-         <td> {{credit}} </td>
-         <td>
-            <button
-               {{!-- Class Id --}}
-               onclick="deleteClassById({{id}}, {{aid}})"
-            > Delete </button>
-         </td>
-      </tr>
-      {{/each}}
-   </tbody>
-</table>   
