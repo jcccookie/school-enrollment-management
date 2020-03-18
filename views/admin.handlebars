@@ -1,4 +1,4 @@
-<nav class="navbar navbar-expand-md bg-light navbar-light">
+<nav class="navbar navbar-expand-md bg-light navbar-light mb-3">
    <a class="navbar-brand" href="/">School Enrollment Manager</a>
    <div class="navbar-collapse collapse w-100 order-1 order-md-0 dual-collapse2">
       <ul class="navbar-nav mr-auto">
@@ -22,30 +22,47 @@
 <div class="container">
 
 <h3>Classes</h3>
-<div class="container">
+<div class="container mb-5">
    <div class="row">
       <div class="col-4">
          <form id="addClass" action="/admin/class" method="post">
-            Subject: <select name="subject"> 
-               <option value="none">None</option>
-               {{#each subjects}}
-               <option value={{id}}>{{name}}</option>
-               {{/each}}
-            </select><br>
-            Term: <select name="term">
-               <option value="none">None</option>
-               {{#each terms}}
-               <option value={{id}}>{{name}} {{year}}</option>
-               {{/each}}
-            </select><br>
-            Name: <input type="text" name="name"><br>
-            Max Students: <input type="number" name="max"><br>
-            Credit: <input type="number" name="credit"><br>
-            <input type="submit" value="Add">
+            <div class="form-group">
+               <label for="subject">Subject</label>
+               <select class="form-control" name="subject" id="subject"> 
+                  <option value="none">None</option>
+                  {{#each subjects}}
+                  <option value={{id}}>{{name}}</option>
+                  {{/each}}
+               </select>
+            </div>
+            <div class="form-group">
+               <label for="term">Term</label>
+               <select class="form-control" name="term" id="term">
+                  <option value="none">None</option>
+                  {{#each terms}}
+                  <option value={{id}}>{{name}} {{year}}</option>
+                  {{/each}}
+               </select>
+            </div>
+            <div class="form-group">
+               <label for="name">Name</label>
+               <input class="form-control" type="text" name="name" id="name">
+            </div>
+            <div class="row">
+               <div class="form-group col-md-6">
+                  <label for="max">Max Students</label>
+                  <input class="form-control" type="number" name="max" id="max">
+               </div>
+               <div class="form-group col-md-6">
+                  <label for="credit">Credit</label>
+                  <input class="form-control" type="number" name="credit" id="credit">
+               </div>
+            </div>
+            <input class="mb-3 btn btn-info btn-md btn-block" type="submit" value="Add">
          </form>
       </div>
       <div class="col-8">
-         <table id="classes">
+         <table id="classes" class="table table-striped table-bordered text-center">
             <thead>
                <th> Id </th>
                <th> Subject </th>
@@ -54,6 +71,8 @@
                <th> Enrolled </th>
                <th> Cap </th>
                <th> Credit </th>
+               <th></th>
+               <th></th>
             </thead>
             <tbody>
                {{#each classes}}
@@ -65,9 +84,10 @@
                   <td> {{enroll}} </td>
                   <td> {{max}} </td>
                   <td> {{credit}} </td>
-                  <td><a href="/admin/class/{{id}}">Edit</a></td>
+                  <td><a class="btn btn-warning btn-sm" href="/admin/class/{{id}}">Edit</a></td>
                   <td>
                      <button
+                        class="btn btn-danger btn-sm"
                         onclick="deleteClass({{id}})"
                      > Delete </button>
                   </td>
@@ -79,22 +99,36 @@
    </div>
 </div>
 
-
 <h3>Students</h3>
-<div class="container">
+<div class="container mb-5">
    <div class="row">
       <div class="col-4">
          <form id="addStudent" action="/admin/student" method="post">
-            First Name: <input type="text" name="fname"><br>
-            Middle Name: <input type="text" name="mname"><br>
-            Last Name: <input type="text" name="lname"><br>
-            Email: <span>your_first_name@oregonstate.edu</span><br>
-            Phone Number: <input type="text" name="phone"><br>
-            <input type="submit" value="Add">
+            <div class="form-group">
+               <label for="fname">First Name</label>
+               <input class="form-control" type="text" name="fname" id="fname">
+            </div>
+            <div class="form-group">
+               <label for="mname">Middle Name</label>
+               <input class="form-control" type="text" name="mname" id="mname">
+            </div>
+            <div class="form-group">
+               <label for="lname"> Last Name</label>
+               <input class="form-control" type="text" name="lname" id="lname">
+            </div>
+            <div class="form-group">
+               <label for="email"> Email</label>
+               <input class="form-control" type="text" readonly class="form-control-plaintext" id="email" value="your_first_name@example.com">
+            </div>
+            <div class="form-group">
+               <label for="phone">Phone Number</label>
+               <input class="form-control" type="text" name="phone" id="phone">
+            </div>
+            <input class="mb-3 btn btn-info btn-md btn-block" type="submit" value="Add">
          </form>
       </div>
       <div class="col-8">
-         <table id="students">
+         <table id="students" class="table table-striped table-bordered text-center">
             <thead>
                <th> Id </th>
                <th> First Name </th>
@@ -102,6 +136,8 @@
                <th> Last Name </th>
                <th> Email </th>
                <th> Mobile </th>
+               <th></th>
+               <th></th>
             </thead>
             <tbody>
                {{#each students}}
@@ -112,9 +148,10 @@
                   <td> {{lname}} </td>
                   <td> {{email}} </td>
                   <td> {{mobile}} </td>
-                  <td><a href="/admin/student/{{id}}">Edit</a></td>
+                  <td><a class="btn btn-warning btn-sm" href="/admin/student/{{id}}">Edit</a></td>
                   <td>
                      <button
+                        class="btn btn-danger btn-sm"
                         onclick="deleteStudent({{id}})"
                      > Delete </button>
                   </td>
@@ -127,26 +164,30 @@
 </div>
 
 <h3>Accounts</h3>
-<div class="container">
+<div class="container mb-5">
    <div class="row">
       <div class="col-4">
          <form id="addAccount" action="/admin/account" method="post">
-            Students with no account: <select name="sid"> 
-               {{#each noaccount}}
-               <option value={{id}}>Student Id: {{id}} Name: {{fname}} {{lname}}</option>
-               {{/each}}
-            </select><br>
-            <input type="submit" value="Add">
+            <div class="form-group">
+               <label for="sid">Students with no account</label>
+               <select class="form-control" name="sid" id="sid">
+                  {{#each noaccount}}
+                  <option value={{id}}>Student Id: {{id}} Name: {{fname}} {{lname}}</option>
+                  {{/each}}
+               </select>
+            </div>
+            <input class="mb-3 btn btn-info btn-md btn-block" type="submit" value="Add">
          </form>
       </div>
       <div class="col-8">
-         <table id="accounts">
+         <table id="accounts" class="table table-striped table-bordered text-center">
             <thead>
                <th> Id </th>
                <th> Student Id </th>
                <th> Name </th>
                <th> Amount Due </th>
                <th> Total Credit </th>
+               <th></th>
             </thead>
             <tbody>
                {{#each accounts}}
@@ -158,6 +199,7 @@
                   <td> {{credit}} </td>
                   <td>
                      <button
+                        class="btn btn-danger btn-sm"
                         onclick="deleteAccount({{id}})"
                      > Delete </button>
                   </td>
@@ -170,18 +212,22 @@
 </div>
 
 <h3>Subjects</h3>
-<div class="container">
+<div class="container mb-5">
    <div class="row">
       <div class="col-4">
          <form id="addSubject" action="/admin/subject" method="post">
-            Subject Name: <input type="text" name="name"><br>
-            <input type="submit" value="Add">
+            <div class="form-group">
+               <label for="sname">Subject Name</label>
+               <input class="form-control" type="text" name="name" id="sname">
+            </div>
+            <input class="mb-3 btn btn-info btn-md btn-block" type="submit" value="Add">
          </form>
       </div>
       <div class="col-8">
-         <table id="subjects">
+         <table id="subjects" class="table table-striped table-bordered text-center">
             <thead>
                <th> Subject Name </th>
+               <th></th>
             </thead>
             <tbody>
                {{#each subjects}}
@@ -189,6 +235,7 @@
                   <td> {{name}} </td>
                   <td>
                      <button
+                        class="btn btn-danger btn-sm"
                         onclick="deleteSubject({{id}})"
                      > Delete </button>
                   </td>
@@ -201,22 +248,34 @@
 </div>
 
 <h3>Terms</h3>
-<div class="container">
+<div class="container mb-5">
    <div class="row">
       <div class="col-4">
          <form id="addTerm" action="/admin/term" method="post">
-            Term Name: <input type="text" name="name"><br>
-            Year: <input type="number" name="year"><br>
-            Max Credit: <input type="number" name="max"><br>
-            <input type="submit" value="Add">
+            <div class="form-group">
+               <label for="tname">Term Name</label>
+               <input class="form-control" type="text" name="name" id="tname">
+            </div>
+            <div class="row">
+               <div class="form-group col-md-6">
+                  <label for="year">Year</label>
+                  <input class="form-control" type="number" name="year" id="year">
+               </div>
+               <div class="form-group col-md-6">
+                  <label for="max">Max Credit</label>
+                  <input class="form-control" type="number" name="max" id="max">
+               </div>
+            </div>
+            <input class="mb-3 btn btn-info btn-md btn-block" type="submit" value="Add">
          </form>
       </div>
       <div class="col-8">
-         <table id="terms">
+         <table id="terms" class="table table-striped table-bordered text-center">
             <thead>
                <th> Name </th>
                <th> Year </th>
                <th> Max Credit </th>
+               <th></th>
             </thead>
             <tbody>
                {{#each terms}}
@@ -226,6 +285,7 @@
                   <td> {{max}} </td>
                   <td>
                      <button
+                        class="btn btn-danger btn-sm"
                         onclick="deleteTerm({{id}})"
                      > Delete </button>
                   </td>
