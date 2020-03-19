@@ -18,11 +18,52 @@
         </ul>
     </div>
 </nav>
-<div id="head">
-   <h1> Search and Add Classes </h1>
+<h3 class="mb-3 text-center">School Enrollment Manager</h3>
+
+<div class="d-flex justify-content-center">
+   <div class="list-group">
+      <a class="list-group-item list-group-item-action list-group-item-primary" href="/search">
+         <p>Search Classes</p>
+         <ul class="list-group">
+            <li class="list-group-item">FILTER Subjects</li>
+            <li class="list-group-item">FILTER Terms</li>
+            <li class="list-group-item">SELECT Subjects, Terms, and Classes</li>
+         </ul>
+      </a>
+      <a class="list-group-item list-group-item-action list-group-item-success" href="/search/class/2">
+         <p>Add a Class by Email</p>
+         <ul class="list-group">
+            <li class="list-group-item">M:M INSERT Account_Details associated with Accounts and Classes (e.g. Type 'pine' and Click Add)</li>
+         </ul>
+      </a>
+      <a class="list-group-item list-group-item-action list-group-item-warning" href="/classes">
+         <p>Check Enrolled Classes</p>
+         <ul class="list-group">
+            <li class="list-group-item">SEARCH Classes (e.g. Type '18' and Click Search)</li>
+
+         </ul>
+      </a>
+      <a class="list-group-item list-group-item-action list-group-item-info" href="/classes/search/18">
+         <p>Delete a Class</p>
+         <ul class="list-group">
+            <li class="list-group-item">SELECT Subjects, Terms, and Classes</li>
+            <li class="list-group-item">DELETE M:M Account_Details associated with Accounts and Classes</li>
+         </ul>
+      </a>
+      <a class="list-group-item list-group-item-action list-group-item-danger" href="/admin">
+         <p>Admin Page</p>
+         <ul class="list-group">
+            <li class="list-group-item">SELECT, INSERT, UPDATE, DELETE Classes | SELECT Account_Details</li>
+            <li class="list-group-item">SELECT, INSERT, UPDATE, DELETE Students</li>
+            <li class="list-group-item">SELECT, INSERT, DELETE Accounts</li>
+            <li class="list-group-item">SELECT, INSERT, DELETE Subjects</li>
+            <li class="list-group-item">SELECT, INSERT, DELETE Terms</li>
+         </ul>
+      </a>
+   </div>
 </div>
 
-<a href="search"><button class="block" id="classButton"> Search Classes</button></a>
-<a href="classes"><button class="block" id="classButton"> Check Classes </button></a>
+
+
 
 

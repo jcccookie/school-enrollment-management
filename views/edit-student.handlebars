@@ -1,12 +1,33 @@
 <html>
-<h1>Edit Student Information</h1>
-<form id="edit-student" action="/admin/student" method="post">
-   First name: <input type="text" name="fname" value="{{student.fname}}"><br>
-    Middle name: <input type="text" name="mname" value="{{student.mname}}"><br>
-    Last name: <input type="text" name="lname" value="{{student.lname}}"><br>
-    Email Address: <span>{{student.email}}</span><br>
-    Mobile: <input type="text" name="mobile" value="{{student.mobile}}"><br>
-</form>
-<button onclick="editStudent({{student.id}})">Save</button>
-<input type="button" value="Cancel" onclick="history.back()">
+    <div class="mt-5">
+      <h3 class="text-center mb-3">Edit Student Information</h3>
+      <div class="d-flex justify-content-center">
+         <form id="edit-student" action="/admin/student" method="post">
+            <div class="form-group">
+                <label for="fname">First Name</label>
+                <input class="form-control" id="fname" type="text" name="fname" value="{{student.fname}}">
+            </div>
+            <div class="form-group">
+                <label for="mname">Middle Name</label>
+                <input class="form-control" id="mname" type="text" name="mname" value="{{student.mname}}">
+            </div>
+            <div class="form-group">
+                <label for="lname">Last Name</label>
+                <input class="form-control" id="lname" type="text" name="lname" value="{{student.lname}}">
+            </div>
+            <div class="form-group">
+                <label for="email">Email</label>
+                <input class="form-control" type="text" readonly class="form-control-plaintext" id="email" value="{{student.email}}">
+            </div>
+            <div class="form-group">
+                <label for="mobile">Mobile</label>
+                <input class="form-control" id="mobile" type="text" name="mobile" value="{{student.mobile}}">
+            </div>
+         </form>
+      </div>
+      <div class="d-flex justify-content-center">
+         <button class="btn btn-info m-2" onclick="editStudent({{student.id}})">Save</button>
+         <input class="btn btn-secondary m-2" type="button" value="Cancel" onclick="history.back()">
+      </div>
+   </div>
 </html>
