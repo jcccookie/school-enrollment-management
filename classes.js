@@ -6,7 +6,6 @@ module.exports = function(){
 // Function for retreiving the classes for each student.
 // Students will input their student ID number to get their classes.
 
-
 	function getStudentClasses(req, res, mysql, context, complete){
 
         var id = mysql.pool.escape(req.params.student_ID);
@@ -81,30 +80,11 @@ module.exports = function(){
                 res.status(400);
                 res.end(); 
             }else{
-                res.status(202).end();
-                // res.redirect('/search');
+                // res.status(202).end();
+                res.redirect('/search');
             }
         })
     })
-
-
-
-  // router.delete('/delete/account_id/:account_id/class_id/:class_id', function(req, res){
-  //  var mysql = req.app.get('mysql');
-  //  var sql = "DELETE FROM Account_Details WHERE account_id = ? AND class_id = ?";
-  //  var inserts = [req.params.id];
-  //  sql = mysql.pool.query(sql, inserts, function(error, results, fields){
-  //      if(error){
-  //          console.log(error)
-  //          res.write(JSON.stringify(error));
-  //          res.status(400);
-  //          res.end();
-  //      }else{
-  //          res.status(202).end();
-  //      }
-  //   })
-  // })
-
 
 	return router;
 
