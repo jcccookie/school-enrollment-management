@@ -4,6 +4,12 @@
 -- Query for getting information about the students classes.
 SELECT Classes.class_id AS id, (SELECT subject_name FROM Subjects WHERE subject_id = Classes.subject_id) AS sname, (SELECT term_year FROM Terms WHERE term_id = Classes.term_id) AS tyear, (SELECT term_name FROM Terms WHERE term_id = Classes.term_id) AS tname, Classes.class_name AS cname, (SELECT COUNT(class_id) FROM Account_Details WHERE class_id = Classes.class_id) AS enroll, Classes.class_student_max AS max, Classes.class_credit AS credit FROM Classes
 
+-- Get Classes by student_id
+SELECT Classes.class_id AS id, Account_Details.account_id as aid, (SELECT subject_name FROM Subjects WHERE subject_id = Classes.subject_id) AS sname, (SELECT term_year FROM Terms WHERE term_id = Classes.term_id) AS tyear, (SELECT term_name FROM Terms WHERE term_id = Classes.term_id) AS tname, Classes.class_name AS cname, (SELECT COUNT(class_id) FROM Account_Details WHERE class_id = Classes.class_id) AS enroll, Classes.class_student_max AS max, Classes.class_credit AS credit FROM Classes INNER JOIN Account_Details ON Classes.class_id = Account_Details.class_id WHERE Account_Details.account_id = (SELECT account_id FROM Account WHERE Account.student_id=" + id + ")
+
+--DELETE M:M relationship
+DELETE FROM Account_Details WHERE class_id=? AND account_id=?
+
 
 -- Search Page --
 --Get Subject
@@ -21,6 +27,8 @@ SELECT Classes.class_id AS id, (SELECT subject_name FROM Subjects WHERE subject_
 --Get Class by Term
 SELECT Classes.class_id AS id, (SELECT subject_name FROM Subjects WHERE subject_id = Classes.subject_id) AS sname, (SELECT term_year FROM Terms WHERE term_id = Classes.term_id) AS tyear, (SELECT term_name FROM Terms WHERE term_id = Classes.term_id) AS tname, Classes.class_name AS cname, (SELECT COUNT(class_id) FROM Account_Details WHERE class_id = Classes.class_id) AS enroll, Classes.class_student_max AS max, Classes.class_credit AS credit FROM Classes WHERE Classes.term_id = ?
 
+--INSERT M:M Relatioship
+INSERT INTO Account_Details (account_id, class_id) VALUES ((SELECT account_id FROM Account WHERE student_id = (SELECT student_id FROM Students WHERE email_address LIKE ?)), ?)
 
 -- Admin Page -- 
 

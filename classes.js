@@ -35,7 +35,7 @@ module.exports = function(){
       complete();
   });
   }
-
+    // Display Classes
     router.get('/', function(req, res){
         var callbackCount = 0;
         var context = {};
@@ -50,6 +50,7 @@ module.exports = function(){
         }
     });
 
+    // Display Classes by student id
     router.get('/search/:student_ID', function(req, res){
         var callbackCount = 0;
         var context = {};
@@ -66,6 +67,7 @@ module.exports = function(){
         }
     });
 
+    // DELETE M:M relationship
     router.delete('/search/cid/:cid/aid/:aid', function(req, res){
         var cid = req.params.cid;
         var aid = req.params.aid;

@@ -119,6 +119,7 @@ module.exports = function(){
          res.render('add-class', context);
    })
 
+   // INSERT M:M Relationship 
    router.post('/class/:id', function(req, res){
       var email = (req.body.email + '%').toLowerCase();
       var cid = req.params.id;
