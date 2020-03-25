@@ -4,4 +4,4 @@
 ### node index.js 3000
 
 ### Project and Database Outlines
-[Outlines](Project Step 7.pdf)
+[Outlines](https://github.com/jcccookie/school.database.project/blob/master/Project%20Step%207.pdf)
